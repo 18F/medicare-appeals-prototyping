@@ -1,5 +1,7 @@
 # medicare-appeals-prototyping
 
+[WIP] An exploratory repository to test prototypes for viewing and interacting with the life cycle of a Medicare appeal.
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for additional information.
