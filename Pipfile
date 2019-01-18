@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+drf-yasg = "*"
+django-cors-headers = "*"
+"psycopg2-binary" = "*"
+dj-database-url = "*"
+cfenv = "*"
+cg-django-uaa = "*"
+whitenoise = "*"
+
+[dev-packages]
+pytest = "*"
+coverage = "*"
+flake8 = "*"
+factory-boy = "*"
+django-debug-toolbar = "*"
+yapf = "*"
+pytest-django = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+develop = "python manage.py runserver --insecure"
+format = "yapf -r -i medicare_appeals"
+makemigrations = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+showmigrations = "python manage.py showmigrations"
+collectstatic = "python manage.py collectstatic"

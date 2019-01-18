@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+.c-header__title {
+    color: #fff;
+    text-decoration: none;
+}
+
+.c-header__title:hover,:active {
+    color: #fff;
+    opacity: 0.9;
+}
+
+.c-header__title:focus {
+    color: #fff;
+    opacity: 0.9;
+    outline: #4b4b4d;
+}
