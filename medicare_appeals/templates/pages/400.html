@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+    <div class="ds-u-padding-y--7">
+        <h2>This is bad request</h2>
+        <p>
+        {% if exception %}
+            {{exception}}
+        {% else %}
+            Please change and retry the request.
+        {% endif %}
+        </p>
+    </div>
+{% endblock %}

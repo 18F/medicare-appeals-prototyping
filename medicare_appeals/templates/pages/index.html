@@ -3,20 +3,5 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <div class="ds-l-row ds-u-justify-content--center ds-u-padding-top--7">
-        <div class="ds-l-col--10 ds-u-padding--4">
-            <h1 class="ds-title">
-                Welcome to the <strong>
-                    Medicare Appeals Sweeping Transparency & Reconciliation Prototype
-                </strong>
-            </h1>
-        </div>
-    </div>
-    <div class="ds-l-row ds-u-justify-content--center">
-        <div class="ds-l-col--10 ds-u-padding--4">
-            {% load static %}
-            <img src="{% static  'medical-equipment.jpg' %}" alt="medical equipment"/>
-        </div>
-    </div>
-    <img>
+    {% include "components/banner.html" %}
 {% endblock %}

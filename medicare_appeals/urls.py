@@ -19,6 +19,11 @@ from django.conf import settings
 from django.urls import include, path
 from medicare_appeals.appeals.views import index
 
+handler400 = 'medicare_appeals.appeals.views.handler400'
+handler403 = 'medicare_appeals.appeals.views.handler403'
+handler404 = 'medicare_appeals.appeals.views.handler404'
+handler500 = 'medicare_appeals.appeals.views.handler500'
+
 urlpatterns = [path("admin/", admin.site.urls), path("", index)]
 
 if settings.DEBUG:
