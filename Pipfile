@@ -27,9 +27,10 @@ pytest-django = "*"
 python_version = "3.7"
 
 [scripts]
+collectstatic = "python manage.py collectstatic"
 develop = "python manage.py runserver --insecure"
 format = "yapf -r -i medicare_appeals"
 makemigrations = "python manage.py makemigrations"
 migrate = "python manage.py migrate"
 showmigrations = "python manage.py showmigrations"
-collectstatic = "python manage.py collectstatic"
+test = "pytest"

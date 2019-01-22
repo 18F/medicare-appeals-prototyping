@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from .choices import *
+import medicare_appeals.appeals.choices as choices
 
 
 class Appeal(models.Model):
@@ -9,9 +9,11 @@ class Appeal(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     description = models.CharField(max_length=60)
-    category = models.CharField(max_length=2, choices=APPEAL_CATEGORY)
+    category = models.CharField(max_length=2, choices=choices.APPEAL_CATEGORY)
     status = models.CharField(
-        max_length=1, choices=APPEAL_STATUS, default=APPEAL_STATUS_DEFAULT)
+        max_length=1,
+        choices=choices.APPEAL_STATUS,
+        default=choices.APPEAL_STATUS_DEFAULT)
 
 
 class Appellant(models.Model):
