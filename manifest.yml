@@ -1,0 +1,13 @@
+---
+applications:
+- name: medicare-appeals-prototype-app
+  buildpack: python_buildpack
+  memory: 512M
+  path: .
+  stack: cflinuxfs2
+  timeout: 180
+  routes:
+  - route: medicare-appeals-prototype.app.cloud.gov
+  instances: 1
+  services:
+  - medicare-appeals-prototyping-database
