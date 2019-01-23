@@ -13,6 +13,8 @@ dj-database-url = "*"
 cfenv = "*"
 cg-django-uaa = "*"
 whitenoise = "*"
+gunicorn = "*"
+gevent = "*"
 
 [dev-packages]
 pytest = "*"
@@ -24,7 +26,7 @@ yapf = "*"
 pytest-django = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [scripts]
 collectstatic = "python manage.py collectstatic"

@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project will 
+This project will
 
 ## Getting Started
 
@@ -58,6 +58,19 @@ $ pipenv run migrate
 ```bash
 $ pipenv run develop
 # Development server http://localhost:8000/
+```
+
+#### Running the tests
+
+```bash
+$ pipenv run test
+```
+
+#### Formatting the Python code
+
+```bash
+$ pipenv run format
+# Formatting done with https://github.com/google/yapf
 ```
 
 ## Contributing

@@ -1,0 +1,102 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+cf-docker-image: &CF_DOCKER_IMAGE
+  docker:
+    - image: 18fgsa/cloud-foundry-cli
+      environment:
+        - TZ=America/New_York
+        - CF_API: https://api.fr.cloud.gov
+working-directory: &WORKING_DIRECTORY
+  working_directory: ~/repo
+
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.5-jessie-node-browsers
+        environment:
+          - TZ=America/New_York
+          - PIPENV_VENV_IN_PROJECT=true
+
+      - image: circleci/postgres:9.6.8
+        environment:
+          - POSTGRES_USER=circleci
+          - POSTGRES_DB=medicare-test
+
+    <<: *WORKING_DIRECTORY
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Pipfile" }}-{{ checksum "Pipfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            pip install pipenv
+            pipenv install --dev --deploy
+
+      - save_cache:
+          paths:
+            - ./.venv
+          key: v1-dependencies-{{ checksum "Pipfile" }}-{{ checksum "Pipfile.lock" }}
+
+      # run tests!
+      - run:
+          name: run tests
+          environment:
+            DATABASE_URL: "postgres://circleci@localhost:5432/medicare-test"
+            DJANGO_SETTINGS_MODULE: "medicare_appeals.settings.test"
+          command: |
+            pipenv run migrate
+            pypenv run test
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+
+  deploy_prototype:
+    <<: *CF_DOCKER_IMAGE
+
+    <<: *WORKING_DIRECTORY
+
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Login to cloud.gov Staging
+          command: cf login -a ${CF_API} -u ${CF_DEPLOYER_USERNAME_STAGING} -p ${CF_DEPLOYER_PASSWORD_STAGING}
+      - run:
+          name: Save version to file system
+          command: echo ${CIRCLE_SHA1} > VERSION
+      - run:
+          name: deploy Tock Staging to cloud.gov
+          command: cf_deploy.sh medicare-appeals-prototype-app ${CF_ORG} ${CF_SPACE} manifest.yml
+
+workflows:
+  version: 2
+  build_and_deploy_prototype:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+      - deploy_prototype:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
