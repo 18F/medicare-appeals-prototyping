@@ -57,7 +57,7 @@ jobs:
             DJANGO_SETTINGS_MODULE: "medicare_appeals.settings.test"
           command: |
             pipenv run migrate
-            pypenv run test
+            pipenv run test
 
       - store_artifacts:
           path: test-reports
