@@ -78,7 +78,7 @@ jobs:
           at: .
       - run:
           name: Login to cloud.gov Staging
-          command: cf login -a ${CF_API} -u ${CF_DEPLOYER_USERNAME_STAGING} -p ${CF_DEPLOYER_PASSWORD_STAGING}
+          command: cf login -a ${CF_API} -u ${CF_DEPLOYER_USERNAME} -p ${CF_DEPLOYER_PASSWORD}
       - run:
           name: Save version to file system
           command: echo ${CIRCLE_SHA1} > VERSION
