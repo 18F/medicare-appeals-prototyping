@@ -2,7 +2,7 @@
 applications:
 - name: medicare-appeals-prototype-app
   buildpack: python_buildpack
-  memory: 512M
+  memory: 128M
   path: .
   stack: cflinuxfs2
   timeout: 180

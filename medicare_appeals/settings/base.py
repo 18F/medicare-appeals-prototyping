@@ -1,8 +1,5 @@
 import os
-import dj_database_url
-
 from django.utils.crypto import get_random_string
-
 from .env import env
 
 DEBUG = False
