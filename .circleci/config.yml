@@ -91,9 +91,6 @@ workflows:
   build_and_deploy_prototype:
     jobs:
       - build:
-          filters:
-            branches:
-              only: master
       - deploy_prototype:
           requires:
             - build
