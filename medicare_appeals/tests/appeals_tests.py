@@ -37,4 +37,4 @@ def test_two_appeals(build_two_appeals):
     assert appeals.count() == 2
 
     for idx, appeal in enumerate(appeals):
-        appeal.description == 'test{0}'.format(idx)
+        assert appeal.description == 'test{0}'.format(idx)

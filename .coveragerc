@@ -1,0 +1,10 @@
+[run]
+branch = True
+source =
+    medicare_appeals
+omit =
+    .venv/*
+    /*migrations*/
+    /*management*/
+    manage.py
+    */tests/*
