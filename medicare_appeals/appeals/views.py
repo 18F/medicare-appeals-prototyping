@@ -1,8 +1,7 @@
-from django.contrib.auth.models import User, Group
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import viewsets
-from medicare_appeals.appeals.serializers import UserSerializer, GroupSerializer
+from medicare_appeals.appeals import models, serializers
 
 
 def index(request):
@@ -30,17 +29,57 @@ def handler500(request, exception=None):
     return render(request, 'pages/500.html', {})
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class AppealViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows appeals to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+    queryset = models.Appeal.objects.all()
+    serializer_class = serializers.AppealSerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class AppellantViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows appellants to be viewed or edited.
     """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    queryset = models.Appellant.objects.all()
+    serializer_class = serializers.AppellantSerializer
+
+
+class ClaimViewset(viewsets.ModelViewSet):
+    """
+    API endpoint that allows claims to be viewed or edited
+    """
+    queryset = models.Claim.objects.all()
+    serializer_class = serializers.ClaimSerializer
+
+
+class HollisticAppealViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows hollistic appeals to be viewed or edited.
+    """
+    queryset = models.HollisticAppeal.objects.all()
+    serializer_class = serializers.HollisticAppealSerializer
+
+
+class LevelViewset(viewsets.ModelViewSet):
+    """
+    API endpoint that allows levels to be viewed or edited
+    """
+    queryset = models.Level.objects.all()
+    serializer_class = serializers.LevelSerializer
+
+
+class ProviderViewset(viewsets.ModelViewSet):
+    """
+    API endpoint that allows providers to be viewed or edited
+    """
+    queryset = models.Provider.objects.all()
+    serializer_class = serializers.ProviderSerializer
+
+
+class StatusViewset(viewsets.ModelViewSet):
+    """
+    API endpoint that allows statuses to be viewed or edited
+    """
+    queryset = models.Status.objects.all()
+    serializer_class = serializers.StatusSerializer

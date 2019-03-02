@@ -11,8 +11,13 @@ handler404 = 'medicare_appeals.appeals.views.handler404'
 handler500 = 'medicare_appeals.appeals.views.handler500'
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'appeals', views.AppealViewSet)
+router.register(r'appellants', views.AppellantViewSet)
+router.register(r'claims', views.ClaimViewset)
+router.register(r'hollistic_appeals', views.HollisticAppealViewSet)
+router.register(r'levels', views.LevelViewset)
+router.register(r'providers', views.ProviderViewset)
+router.register(r'statuses', views.StatusViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
