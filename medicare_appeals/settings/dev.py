@@ -4,7 +4,7 @@ from .base import *
 DEBUG = True
 
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
-DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
+DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 INTERNAL_IPS = ['127.0.0.1']
 

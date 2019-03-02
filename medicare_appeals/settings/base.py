@@ -14,15 +14,16 @@ AGENCY = PROJECT_NAME
 DATABASES = {}
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "corsheaders",
-    "rest_framework",
-    "medicare_appeals.appeals",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework',
+    'drf_yasg',
+    'medicare_appeals.appeals',
 ]
 
 MIDDLEWARE = [
@@ -36,6 +37,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':
+    ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
+    'DEFAULT_PAGINATION_CLASS':
+    'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE':
+    50
+}
 
 ROOT_URLCONF = 'medicare_appeals.urls'
 
@@ -78,9 +88,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(STATIC_ROOT, "css"),
-    os.path.join(STATIC_ROOT, "fonts"),
-    os.path.join(STATIC_ROOT, "images")
+    os.path.join(STATIC_ROOT, 'css'),
+    os.path.join(STATIC_ROOT, 'fonts'),
+    os.path.join(STATIC_ROOT, 'images')
 ]
 
 # CF-Django-UAA config (cg-django-uaa.readthedocs.io)

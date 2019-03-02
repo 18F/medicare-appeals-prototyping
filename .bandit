@@ -1,0 +1,2 @@
+[bandit]
+exclude: medicare_appeals/tests,.venv
