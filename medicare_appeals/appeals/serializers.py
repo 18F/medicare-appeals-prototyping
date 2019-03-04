@@ -20,9 +20,9 @@ class ClaimSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class HollisticAppealSerializer(serializers.HyperlinkedModelSerializer):
+class HolisticAppealSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = models.HollisticAppeal
+        model = models.HolisticAppeal
         fields = '__all__'
 
 

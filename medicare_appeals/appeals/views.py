@@ -53,12 +53,12 @@ class ClaimViewset(viewsets.ModelViewSet):
     serializer_class = serializers.ClaimSerializer
 
 
-class HollisticAppealViewSet(viewsets.ModelViewSet):
+class HolisticAppealViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows hollistic appeals to be viewed or edited.
+    API endpoint that allows holistic appeals to be viewed or edited.
     """
-    queryset = models.HollisticAppeal.objects.all()
-    serializer_class = serializers.HollisticAppealSerializer
+    queryset = models.HolisticAppeal.objects.all()
+    serializer_class = serializers.HolisticAppealSerializer
 
 
 class LevelViewset(viewsets.ModelViewSet):

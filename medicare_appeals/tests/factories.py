@@ -21,9 +21,9 @@ class ClaimFactory(factory.django.DjangoModelFactory):
         lambda o: helpers.calc_controversy(o.amount_billed, o.amount_paid))
 
 
-class HollisticAppealFactory(factory.django.DjangoModelFactory):
+class HolisticAppealFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = models.HollisticAppeal
+        model = models.HolisticAppeal
 
 
 class AppealFactory(factory.django.DjangoModelFactory):
@@ -88,19 +88,19 @@ class ProviderFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('company')
 
 
-def build_four_level_hollistic_appeal(max_appeals=10, **kwargs):
+def build_four_level_holistic_appeal(max_appeals=10, **kwargs):
     total_appeals = helpers.evenify(randrange(4, max_appeals))
     claim_count = int((total_appeals - 2) / 2)
     is_open = kwargs.get('is_open', bool(randint(0, 1)))
 
-    hollistic_appeal = HollisticAppealFactory()
+    holistic_appeal = HolisticAppealFactory()
     appellant = AppellantFactory()
     provider = ProviderFactory()
     claims = helpers.save_batch_fixtures(ClaimFactory, claim_count)
     appeals = helpers.save_batch_fixtures(
         AppealFactory,
         total_appeals,
-        hollistic_appeal=hollistic_appeal,
+        holistic_appeal=holistic_appeal,
         appellant=appellant,
         provider=provider)
 
@@ -109,7 +109,7 @@ def build_four_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl4 = LevelFactory(
                 level_name='lvl4',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status4 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             for claim in claims:
@@ -119,7 +119,7 @@ def build_four_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl3 = LevelFactory(
                 level_name='lvl3',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status3 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             for claim in claims:
@@ -128,7 +128,7 @@ def build_four_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl2 = LevelFactory(
                 level_name='lvl2',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status2 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             atc2 = AppealToClaimFactory(appeal=appeal, claim=claims[idx - 2])
@@ -136,26 +136,26 @@ def build_four_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl1 = LevelFactory(
                 level_name='lvl1',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status1 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             atc1 = AppealToClaimFactory(
                 appeal=appeal, claim=claims[idx - (claim_count + 2)])
 
 
-def build_three_level_hollistic_appeal(max_appeals=10, **kwargs):
+def build_three_level_holistic_appeal(max_appeals=10, **kwargs):
     total_appeals = helpers.evenify(randrange(3, max_appeals), oddify=True)
     claim_count = int((total_appeals - 1) / 2)
     is_open = kwargs.get('is_open', bool(randint(0, 1)))
 
-    hollistic_appeal = HollisticAppealFactory()
+    holistic_appeal = HolisticAppealFactory()
     appellant = AppellantFactory()
     provider = ProviderFactory()
     claims = helpers.save_batch_fixtures(ClaimFactory, claim_count)
     appeals = helpers.save_batch_fixtures(
         AppealFactory,
         total_appeals,
-        hollistic_appeal=hollistic_appeal,
+        holistic_appeal=holistic_appeal,
         appellant=appellant,
         provider=provider)
 
@@ -164,7 +164,7 @@ def build_three_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl3 = LevelFactory(
                 level_name='lvl3',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status3 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             for claim in claims:
@@ -173,7 +173,7 @@ def build_three_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl2 = LevelFactory(
                 level_name='lvl2',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status2 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             atc2 = AppealToClaimFactory(appeal=appeal, claim=claims[idx - 1])
@@ -181,7 +181,7 @@ def build_three_level_hollistic_appeal(max_appeals=10, **kwargs):
             lvl1 = LevelFactory(
                 level_name='lvl1',
                 appeal=appeal,
-                hollistic_appeal=hollistic_appeal)
+                holistic_appeal=holistic_appeal)
             status1 = helpers.get_appeal_statuses(StatusFactory, appeal,
                                                   is_open)
             atc1 = AppealToClaimFactory(

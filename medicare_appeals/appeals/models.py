@@ -4,9 +4,9 @@ from django.db import models
 import medicare_appeals.appeals.choices as choices
 
 
-class HollisticAppeal(models.Model):
+class HolisticAppeal(models.Model):
     class Meta:
-        db_table = 'hollistic_appeal'
+        db_table = 'holistic_appeal'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -51,8 +51,8 @@ class Appeal(models.Model):
         through='AppealToClaim',
         through_fields=('appeal', 'claim'),
     )
-    hollistic_appeal = models.ForeignKey(
-        'HollisticAppeal', on_delete=models.CASCADE, blank=True, null=True)
+    holistic_appeal = models.ForeignKey(
+        'HolisticAppeal', on_delete=models.CASCADE, blank=True, null=True)
     provider = models.ForeignKey(
         'Provider', on_delete=models.CASCADE, blank=True, null=True)
     appellant = models.ForeignKey(
@@ -96,8 +96,8 @@ class Level(models.Model):
     reviewer_type = models.CharField(max_length=25)
     location = models.CharField(max_length=50)
     appeal = models.OneToOneField('Appeal', on_delete=models.CASCADE)
-    hollistic_appeal = models.ForeignKey(
-        'HollisticAppeal', on_delete=models.CASCADE)
+    holistic_appeal = models.ForeignKey(
+        'HolisticAppeal', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
