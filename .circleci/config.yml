@@ -82,7 +82,7 @@ jobs:
           name: Save version to file system
           command: echo ${CIRCLE_SHA1} > VERSION
       - run:
-          name: deploy Tock Staging to cloud.gov
+          name: deploy prototype to cloud.gov
           command: cf_deploy.sh medicare-appeals-prototype-app ${CF_ORG} ${CF_SPACE} manifest.yml
 
 workflows:

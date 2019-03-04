@@ -16,7 +16,7 @@ whitenoise = "*"
 gunicorn = "*"
 gevent = "*"
 coreapi = "*"
-pyyaml = "*"
+pyyaml = ">=5.1b3"
 
 [dev-packages]
 pytest = "*"
