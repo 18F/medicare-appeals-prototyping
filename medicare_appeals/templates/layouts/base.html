@@ -27,10 +27,10 @@
   {% block extra_head %}{% endblock %}
 </head>
 
-<body id="{% block body_id %}default{% endblock %}" class="ds-base">
+<body id="{% block body_id %}default{% endblock %}" class="ds-base {% block bgcolor %}{% endblock %}">
   {% include "components/header.html" %}
 
-  <div class="ds-l-container preview__grid">
+  <div class="ds-l-container">
     <main>{% block content %}{% endblock %}</main>
   </div>
 

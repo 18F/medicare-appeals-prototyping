@@ -1,0 +1,101 @@
+{% extends "layouts/base.html" %}
+
+{% block bgcolor %}ds-u-fill--gray-lightest{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+  <div class="ds-l-row ds-u-padding-top--2 ds-u-padding-x--1">
+    <div class="ds-c-alert">
+      <div class="ds-c-alert__body">
+        <p class="ds-c-alert__text">
+          The dashboard is powered by mock, generated data which does <strong>NOT</strong> reflect actual
+          appeal, appellant, provider, or beneficiary information.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="ds-l-row ds-u-padding--1">
+    <h1>Medicare Appeals Dashboard</h1>
+  </div>
+  <div class="ds-l-row ds-u-padding-y--1">
+    <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--6 ds-l-lg-col--6 ds-l-xl-col--6">
+      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+        <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+          <div class="ds-l-row ds-u-justify-content--end">
+            <div class="ds-l-col--auto">
+              <button disabled type="button" class="ds-c-button ds-c-button--small ds-c-button--primary">View Details</button>
+            </div>
+          </div>
+          <h3 class="ds-u-margin--0">New Receipts by HHS Level</h3>
+        </div>
+        <div>
+          {% include "components/sample-graph.html" with fill="ds-u-fill--gold" %}
+        </div>
+      </div>
+    </div>
+    <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--6 ds-l-lg-col--6 ds-l-xl-col--6">
+      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+        <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+          <div class="ds-l-row ds-u-justify-content--end">
+            <div class="ds-l-col--auto">
+              <button disabled type="button" class="ds-c-button ds-c-button--small ds-c-button--primary">View Details</button>
+            </div>
+          </div>
+          <h3 class="ds-u-margin--0">Dispositions by HHS Level</h3>
+        </div>
+        <div>
+          {% include "components/sample-graph.html" with fill="ds-u-fill--primary-alt" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ds-l-row ds-u-padding-y--1">
+    <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--12 ds-l-xl-col--12">
+      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+        <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+          <div class="ds-l-row ds-u-justify-content--end">
+            <div class="ds-l-col--auto">
+              <button disabled type="button" class="ds-c-button ds-c-button--small ds-c-button--primary">View Details</button>
+            </div>
+          </div>
+          <h3 class="ds-u-margin--0">Pending number of receipts</h3>
+        </div>
+        <div>
+          {% include "components/sample-graph.html" with fill="ds-u-fill--primary-darkest" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ds-l-row ds-u-padding-y--1">
+    <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--6 ds-l-lg-col--6 ds-l-xl-col--6">
+      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+        <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+          <div class="ds-l-row ds-u-justify-content--end">
+            <div class="ds-l-col--auto">
+              <button disabled type="button" class="ds-c-button ds-c-button--small ds-c-button--primary">View Details</button>
+            </div>
+          </div>
+          <h3 class="ds-u-margin--0">Net Appeals</h3>
+        </div>
+        <div>
+          {% include "components/sample-graph.html" with fill="ds-u-fill--green" %}
+        </div>
+      </div>
+    </div>
+    <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--6 ds-l-lg-col--6 ds-l-xl-col--6">
+      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+        <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+          <div class="ds-l-row ds-u-justify-content--end">
+            <div class="ds-l-col--auto">
+              <button disabled type="button" class="ds-c-button ds-c-button--small ds-c-button--primary">View Details</button>
+            </div>
+          </div>
+          <h3 class="ds-u-margin--0">Average Processing Time</h3>
+        </div>
+        <div>
+          {% include "components/sample-graph.html" with fill="ds-u-fill--secondary" %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

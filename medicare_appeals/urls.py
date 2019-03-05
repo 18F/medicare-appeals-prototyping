@@ -3,6 +3,7 @@ from django.conf import settings
 from django.urls import include, path, re_path
 from rest_framework import permissions, routers
 from medicare_appeals.appeals import views
+from medicare_appeals.dashboard.views import dashboard
 from medicare_appeals.schema import schema_view
 
 handler400 = 'medicare_appeals.appeals.views.handler400'
@@ -22,6 +23,7 @@ router.register(r'statuses', views.StatusViewset)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('dashboard/', dashboard),
     path('api/', include(router.urls)),
     re_path(
         r'^docs(?P<format>\.json|\.yaml)$',
