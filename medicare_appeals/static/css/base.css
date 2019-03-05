@@ -13,7 +13,7 @@ video {
     text-decoration: none;
 }
 
-.c-header__title:hover,:active {
+.c-header__title:hover {
     color: #fff;
     opacity: 0.9;
 }
