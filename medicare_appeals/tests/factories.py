@@ -60,9 +60,8 @@ class StatusFactory(factory.django.DjangoModelFactory):
         model = models.Status
 
     description = factory.Faker('sentence', nb_words=10)
-    status_type = factory.Iterator(choices.APPEAL_STATUS)
+    category = factory.Iterator(choices.APPEAL_STATUS)
     action = factory.Iterator(choices.APPEAL_WORKFLOW_TYPE)
-    is_current = factory.Faker('pybool')
     appeal = factory.SubFactory(AppealFactory)
 
 
@@ -83,7 +82,7 @@ class ProviderFactory(factory.django.DjangoModelFactory):
         model = models.Provider
 
     description = factory.Faker('catch_phrase')
-    provider_type = factory.Iterator(choices.PLACE_OF_SERVICE)
+    provider_type = factory.Iterator(choices.PROVIDER_TYPE)
     national_provider_id = factory.Faker('ean13')
     name = factory.Faker('company')
 

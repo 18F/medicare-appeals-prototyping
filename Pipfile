@@ -37,7 +37,7 @@ python_version = "3.6"
 [scripts]
 collectstatic = "python manage.py collectstatic"
 develop = "python manage.py runserver --insecure"
-format = "yapf -r -i medicare_appeals"
+format = "yapf -r -i medicare_appeals -e medicare_appeals/appeals/choices.py"
 makemigrations = "python manage.py makemigrations"
 migrate = "python manage.py migrate"
 security = "bandit -r ."

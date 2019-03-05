@@ -46,15 +46,15 @@ def get_appeal_statuses(factory, appeal, is_open):
     for idx in range(0, status_count):
         if (idx == 0):
             status = factory(
-                appeal=appeal, status_type='Received', action='Appeal Filed')
+                appeal=appeal, category='Received', action='Appeal Filed')
         elif idx > 0 and idx < (status_count - 1):
-            status = factory(appeal=appeal, status_type='Open')
+            status = factory(appeal=appeal, category='Open')
         else:
             if is_open:
-                status = factory(appeal=appeal, status_type='Open')
+                status = factory(appeal=appeal, category='Open')
             else:
                 status = factory(
-                    appeal=appeal, status_type='Close', action='Decision')
+                    appeal=appeal, category='Closed', action='Decision')
 
         statuses.append(status)
 
