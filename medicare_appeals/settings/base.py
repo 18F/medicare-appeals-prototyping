@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'medicare_appeals.appeals',
+    'medicare_appeals.dashboard',
 ]
 
 MIDDLEWARE = [

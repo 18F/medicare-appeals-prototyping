@@ -1,0 +1,14 @@
+{% block graphselect %}
+    <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+        <div class="ds-l-row">
+            <div class="ds-l-col--auto">
+                <select class="ds-c-field ds-u-padding-y--0" name={{ card_title|add:" options" }} id={{ card_title|slugify|add:"-options" }}>
+                    <option value="all">Filter by RAC</option>
+                    <option value="rac">RAC</option>
+                    <option value="non-rac">Non-RAC</option>
+                </select>
+            </div>
+        </div>
+        <h2 class="ds-u-margin--0 ds-u-padding-top--2 ds-u-text-align--center">{{ card_title }}</h2>
+    </div>
+{% endblock %}

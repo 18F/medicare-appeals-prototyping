@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+
+{% block bgcolor %}ds-u-fill--gray-lightest{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+  {% include "components/alert.html" %}
+  {% include "components/dashboard-tabs.html" %}
+  <div class="ds-l-row ds-u-padding-y--1">
+    {% include "components/graph-card-half.html" with card_title="New receipt report" fill="ds-u-fill--gold" %}
+    {% include "components/graph-card-half.html" with card_title="Dispositions report" fill="ds-u-fill--primary-alt" %}
+  </div>
+  <div class="ds-l-row ds-u-padding-y--1">
+    {% include "components/graph-card-full.html" with card_title="Pending number of reports" fill="ds-u-fill--green" %}
+  </div>
+  <div class="ds-l-row ds-u-padding-y--1">
+    {% include "components/graph-card-half.html" with card_title="Net appeal report" fill="ds-u-fill--gray" %}
+    {% include "components/graph-card-half.html" with card_title="RAC report" fill="ds-u-fill--secondary" %}
+  </div>
+{% endblock %}
