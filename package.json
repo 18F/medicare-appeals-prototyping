@@ -24,7 +24,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "recharts": "^1.5.0",
     "victory": "^32.0.0"
   },
   "devDependencies": {
