@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/medappeals
+    depends_on:
+      - db
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: medicare_appeals_dev  # Creates both user *and database* of this name.
+      POSTGRES_PASSWORD: somepass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:

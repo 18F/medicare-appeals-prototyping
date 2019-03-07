@@ -10,7 +10,7 @@ This project will
 
 #### Pre-reqs
 
-- Python `v3.7.0`
+- Python `v3.6.0`
 - PostgreSQL `v10`
 
 #### Setting up the environment variables
