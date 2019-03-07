@@ -43,6 +43,7 @@ jobs:
           command: |
             pip install pipenv
             pipenv install --dev --deploy
+            npm install
 
       - save_cache:
           paths:
@@ -55,6 +56,7 @@ jobs:
             DATABASE_URL: "postgres://circleci@localhost:5432/medicare-test"
             DJANGO_SETTINGS_MODULE: "medicare_appeals.settings.test"
           command: |
+            npm run build
             pipenv run migrate
             pipenv run test
 

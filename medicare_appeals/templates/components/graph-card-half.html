@@ -1,10 +1,11 @@
 {% block graphcardhalf %}
     <div class="ds-u-padding--1 ds-l-sm-col--12 ds-l-md-col--6 ds-l-lg-col--6 ds-l-xl-col--6">
-      <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
-        {% include "components/graph-card-select.html" %}
-        <div clas="ds-l-row">
-          {% include included|default:"components/sample-graph.html" %}
+        <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
+            <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
+                <h2 class="ds-u-margin--0 ds-u-padding-top--2">{{ card_title }}</h2>
+            </div>
+            <div style="min-height:350px" class="ds-l-row ds-u-margin--1 ds-u-padding--1 {{ fill|default:"ds-u-fill--white" }}" id={{ card_title|slugify }}>
+            </div>
         </div>
-      </div>
     </div>
 {% endblock %}

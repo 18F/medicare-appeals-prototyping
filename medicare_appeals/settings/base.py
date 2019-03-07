@@ -91,7 +91,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(STATIC_ROOT, 'css'),
     os.path.join(STATIC_ROOT, 'fonts'),
-    os.path.join(STATIC_ROOT, 'images')
+    os.path.join(STATIC_ROOT, 'images'),
+    os.path.join(STATIC_ROOT, 'dist')
 ]
 
 # CF-Django-UAA config (cg-django-uaa.readthedocs.io)
