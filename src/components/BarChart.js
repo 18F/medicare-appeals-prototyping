@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme, VictoryTooltip } from 'victory';
 import colorByLevel from '../utils/colorByLevel';
 
-const BarChart = ({ data, groupBy, field, maxDomain }) => {
-  console.log(maxDomain)
+const BarChart = ({ data, groupBy, field, height, maxDomain }) => {
   return (
     <VictoryChart
-      domainPadding={20}
+      domainPadding={15}
       theme={VictoryTheme.material}
       maxDomain={{y: maxDomain}}
-      animate={{ duration: 600, easing: "poly" }}
+      animate={{ duration: 300, easing: "poly" }}
+      height={height}
     >
       <VictoryAxis
         tickValues={[1, 2, 3, 4]}
@@ -41,7 +41,12 @@ BarChart.propTypes = {
   data: PropTypes.array,
   field: PropTypes.string,
   groupBy: PropTypes.string,
+  height: PropTypes.number,
   maxDomain: PropTypes.number
+};
+
+BarChart.defaultProps = {
+  height: 230
 };
 
 export default BarChart;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectView = ({disabled, options, selected, title, setState}) => {
+const SelectView = ({disabled, name, options, selected, title, setState}) => {
   const optionList = options.map((val, idx) => {
     return (
       <option value={val} key={`${val}-${idx}`}>
@@ -19,7 +19,7 @@ const SelectView = ({disabled, options, selected, title, setState}) => {
           disabled={disabled}
           value={selected}
           className="ds-c-field ds-u-padding-y--0 ds-u-border--2"
-          onChange={(e) => setState(e.target.value)}
+          onChange={(e) => setState(e.target.value, name)}
         >
           { optionList }
         </select>
@@ -29,6 +29,7 @@ const SelectView = ({disabled, options, selected, title, setState}) => {
 
 SelectView.propTypes = {
   disabled: PropTypes.bool,
+  name: PropTypes.string,
   options: PropTypes.array,
   selected: PropTypes.string,
   title: PropTypes.string,
@@ -38,6 +39,7 @@ SelectView.propTypes = {
 SelectView.defaultProps = {
   disabled: false,
   options: ['option-1', 'option-2'],
+  name: 'select-view',
   selected: 'option-1',
   title: 'Select Option',
   setState: (val) => console.log(val),

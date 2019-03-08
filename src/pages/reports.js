@@ -3,6 +3,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NewReceiptsByLevel from '../containers/NewReceiptsByLevel';
+import DispositionsByLevel from '../containers/DispositionsByLevel';
 
 const initialState = [
   {level: 1, receipts: 1021, dispositions: 1030, work_in_progress: 60, denial_category: 'rac'},
@@ -19,7 +20,7 @@ const reports = (context) => {
   const data = context || initialState;
 
   ReactDOM.render(
-    <NewReceiptsByLevel data={data} />,
+    <DispositionsByLevel data={data} />,
     document.getElementById('new-receipt-report')
   );
 
@@ -34,7 +35,7 @@ const reports = (context) => {
   );
 
   ReactDOM.render(
-    <NewReceiptsByLevel data={data} />,
+    <DispositionsByLevel data={data} />,
     document.getElementById('rac-report')
   );
 }
