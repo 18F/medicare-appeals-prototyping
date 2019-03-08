@@ -76,3 +76,6 @@ package-lock.json
 
 # Temporary directories
 tmp/
+
+# DO include the npm dist dir
+!/medicare_appeals/static/dist/
