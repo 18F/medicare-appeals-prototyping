@@ -8,7 +8,7 @@ const dataFilter = (data, category, filter) => {
   })
 }
 
-const dashboard = (data, groupBy, field, category, filter) => {
+const selectData = (data, groupBy, field, category, filter) => {
   const filtered = dataFilter(data, category, filter)
 
   const grouped = _.groupBy(filtered, record => {
@@ -23,4 +23,15 @@ const dashboard = (data, groupBy, field, category, filter) => {
   });
 }
 
-export default dashboard;
+const getMaxField = (data, groupBy, field, category) => {
+  const grouped = selectData(data, groupBy, field, category, {selected: 'all'});
+
+  return _.maxBy(grouped, group => {
+    return group[field]
+  })[field];
+}
+
+export default {
+  selectData,
+  getMaxField
+}
