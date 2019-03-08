@@ -7,14 +7,22 @@
   {% include "components/alert.html" %}
   {% include "components/dashboard-tabs.html" %}
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="New receipt report" fill="ds-u-fill--gold" %}
-    {% include "components/graph-card-half.html" with card_title="Dispositions report" fill="ds-u-fill--primary-alt" %}
+    {% include "components/graph-card-half.html" with card_title="New receipt report" %}
+    {% include "components/graph-card-half.html" with card_title="Dispositions report" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
     {% include "components/graph-card-full.html" with card_title="Pending number of reports" fill="ds-u-fill--green" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="Net appeal report" fill="ds-u-fill--gray" %}
-    {% include "components/graph-card-half.html" with card_title="RAC report" fill="ds-u-fill--secondary" %}
+    {% include "components/graph-card-half.html" with card_title="Net appeal report" %}
+    {% include "components/graph-card-half.html" with card_title="RAC report" %}
   </div>
+
+  {% load static %}
+  <script src="{% static 'Build.reports.js' %}"></script>
+  <script>
+    window.addEventListener('load', function() {
+      Build.reports.default.reports()
+    });
+  </script>
 {% endblock %}

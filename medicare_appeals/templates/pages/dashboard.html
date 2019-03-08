@@ -7,11 +7,11 @@
   {% include "components/alert.html" %}
   {% include "components/dashboard-tabs.html" %}
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="New receipts by HHS Level" fill="ds-u-fill--gold" %}
-    {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" fill="ds-u-fill--primary-alt" %}
+    {% include "components/graph-card-half.html" with card_title="New receipts by HHS Level" %}
+    {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="Work in progress by HHS Level" fill="ds-u-fill--gray-light" %}
+    {% include "components/graph-card-half.html" with card_title="Work in progress by HHS Level" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
     {% include "components/graph-card-full.html" with card_title="Net receipts total" included="components/graph-column-totals.html" %}
@@ -22,4 +22,13 @@
   <div class="ds-l-row ds-u-padding-y--1">
     {% include "components/graph-card-full.html" with card_title="Total overturn rate" included="components/graph-column-totals.html" %}
   </div>
+
+  {% load static %}
+  <script src="{% static 'Build.dashboard.js' %}"></script>
+  <script>
+    window.addEventListener('load', function() {
+      Build.dashboard.default.dashboard()
+    });
+  </script>
+
 {% endblock %}
