@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SelectView from './SelectView';
 
-const graphContainer = (GraphComponent, selectData) => {
+const graphContainer = (GraphComponent, selector) => {
   class WrapperComponent extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
+        maxDomain: selector.getMaxField(
+          this.props.data,
+          this.props.groupBy,
+          this.props.field,
+          this.props.category
+        ),
         filter: this.props.filter,
         view: 'graph',
         viewOptions: ['graph', 'table'],
@@ -32,7 +38,7 @@ const graphContainer = (GraphComponent, selectData) => {
     render() {
       const { data, ...props} = this.props;
 
-      const selectedData = selectData(
+      const selectedData = selector.selectData(
         data,
         this.props.groupBy,
         this.props.field,
@@ -56,7 +62,11 @@ const graphContainer = (GraphComponent, selectData) => {
             />
           </div>
           <div className="ds-l-row">
-            <GraphComponent data={selectedData} {...props}/>
+            <GraphComponent
+              data={selectedData}
+              maxDomain={this.state.maxDomain}
+              {...props}
+            />
           </div>
         </div>
       );
