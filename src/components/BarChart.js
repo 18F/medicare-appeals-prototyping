@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme, VictoryTooltip } from 'victory';
 import colorByLevel from '../utils/colorByLevel';
 
-const initialState = [
-  {level: 1, receipts: 13021},
-  {level: 2, receipts: 8305},
-  {level: 3, receipts: 6780},
-  {level: 4, receipts: 4422}
-];
-
-const BarChart = ({ data }) => {
+const BarChart = ({ data, groupBy, field }) => {
   return (
     <VictoryChart
       domainPadding={20}
@@ -27,14 +20,14 @@ const BarChart = ({ data }) => {
       <VictoryBar
         style={{
           data: {
-            fill: (d) => colorByLevel(d.level),
+            fill: (d) => colorByLevel(d[groupBy]),
             fillOpacity: 0.85
           }
         }}
         data={data}
-        x="level"
-        y="receipts"
-        labels={(d) => `${d.receipts}`}
+        x={groupBy}
+        y={field}
+        labels={(d) => `${d[field]}`}
         labelComponent={<VictoryTooltip/>}
       />
     </VictoryChart>
@@ -42,11 +35,9 @@ const BarChart = ({ data }) => {
 };
 
 BarChart.propTypes = {
-  data: PropTypes.array
-};
-
-BarChart.defaultProps = {
-  data: initialState
+  data: PropTypes.array,
+  field: PropTypes.string,
+  groupBy: PropTypes.string
 };
 
 export default BarChart;
