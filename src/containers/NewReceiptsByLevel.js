@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import graphContainer from '../components/GraphContainer';
 import BarChart from '../components/BarChart';
+import TableView from '../components/TableView';
 import dashboard from '../selectors/dashboard';
 
 const filter = {
@@ -10,7 +11,13 @@ const filter = {
   title: 'Filters'
 }
 
-const WrappedGraph = graphContainer(BarChart, dashboard)
+const view = {
+  options: ['graph', 'table'],
+  selected: 'table',
+  title: 'Select View'
+}
+
+const WrappedGraph = graphContainer(BarChart, TableView, dashboard)
 
 const NewReceipts = ({ data }) => {
   return (
@@ -20,6 +27,7 @@ const NewReceipts = ({ data }) => {
       category='denial_category'
       field='receipts'
       filter={filter}
+      view={view}
     />
   );
 };

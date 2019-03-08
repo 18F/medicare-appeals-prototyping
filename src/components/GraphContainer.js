@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SelectView from './SelectView';
 
-const graphContainer = (GraphComponent, selector) => {
+const graphContainer = (GraphComponent, TableComponent, selector) => {
   class WrapperComponent extends React.Component {
     constructor(props) {
       super(props);
@@ -14,28 +14,22 @@ const graphContainer = (GraphComponent, selector) => {
           this.props.category
         ),
         filter: this.props.filter,
-        view: 'graph',
-        viewOptions: ['graph', 'table'],
-        viewTitle: 'Select View'
+        view: this.props.view
       };
 
-      this.updateFilter = this.updateFilter.bind(this);
-      this.updateContainerView = this.updateContainerView.bind(this);
+      this.updateSelect = this.updateSelect.bind(this);
+      this.showSelectedComponent = this.showSelectedComponent.bind(this);
     }
 
-    updateFilter(selected) {
+    updateSelect(selected, name) {
       const setState = this.setState.bind(this);
-      const { options, title } = this.state.filter;
+      const { options, title } = this.state[name];
 
-      setState({filter: { options, selected, title }})
+      setState({[name]: { options, selected, title }})
     }
 
-    updateContainerView(val) {
-      const setState = this.setState.bind(this);
-      setState({view: val});
-    }
-
-    render() {
+    showSelectedComponent() {
+      const { maxDomain, view } = this.state;
       const { data, ...props} = this.props;
 
       const selectedData = selector.selectData(
@@ -46,27 +40,46 @@ const graphContainer = (GraphComponent, selector) => {
         this.state.filter
       )
 
+      if (view.selected === 'graph') {
+        return (
+          <GraphComponent
+            data={selectedData}
+            maxDomain={this.state.maxDomain}
+            {...props}
+          />
+        );
+      }
+      else {
+        return (
+          <TableComponent
+            data={selectedData}
+            maxDomain={this.state.maxDomain}
+            {...props}
+          />
+        );
+      }
+    }
+
+    render() {
+
+      const showSelectedComponent = this.showSelectedComponent;
+
       return (
-        <div className="ds-l-col--12 ds-u-padding-1">
+        <div className="ds-l-col--12">
           <div className="ds-l-row ds-u-justify-content--end">
             <SelectView
-              disabled
-              options={this.state.viewOptions}
-              selected={this.state.view}
-              title={this.state.viewTitle}
-              setState={this.updateContainerView}
+              {...this.state.view}
+              name={'view'}
+              setState={this.updateSelect}
             />
             <SelectView
               {...this.state.filter}
-              setState={this.updateFilter}
+              name={'filter'}
+              setState={this.updateSelect}
             />
           </div>
           <div className="ds-l-row">
-            <GraphComponent
-              data={selectedData}
-              maxDomain={this.state.maxDomain}
-              {...props}
-            />
+            {showSelectedComponent()}
           </div>
         </div>
       );
@@ -89,7 +102,12 @@ const graphContainer = (GraphComponent, selector) => {
     },
     groupBy: 'level',
     category: 'denial_category',
-    field: 'receipts'
+    field: 'receipts',
+    view: {
+      options: ['graph', 'table'],
+      selected: 'graph',
+      title: 'Select View'
+    }
   }
 
   return WrapperComponent
