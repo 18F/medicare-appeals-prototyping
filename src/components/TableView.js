@@ -34,7 +34,7 @@ const TableRow = ({ record, groupBy, field }) => {
       <div className="ds-u-padding-x--1">
         <div className="ds-u-justify-content--center ds-u-align-items--center ds-u-display--flex">
           <p className="ds-u-font-weight--bold ds-u-font-size--h3 ds-u-margin--0">
-          {`${record[field]}`}
+          {`${record[field].toLocaleString()}`}
           </p>
           <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-font-size--small ds-u-margin--0">
           {`${formatLabel(field)}`}

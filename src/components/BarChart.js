@@ -30,7 +30,7 @@ const BarChart = ({ data, groupBy, field, height, maxDomain }) => {
         data={data}
         x={groupBy}
         y={field}
-        labels={(d) => `${d[field]}`}
+        labels={(d) => `${d[field].toLocaleString()}`}
         labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{fill: "white"}}/>}
       />
     </VictoryChart>
