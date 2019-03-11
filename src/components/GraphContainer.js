@@ -87,27 +87,12 @@ const graphContainer = (GraphComponent, TableComponent, selector) => {
   }
 
   WrapperComponent.propTypes = {
-    data: PropTypes.array,
-    filter: PropTypes.object,
-    groupBy: PropTypes.string,
-    category: PropTypes.string,
-    field: PropTypes.string
-  }
-
-  WrapperComponent.defaultProps = {
-    filter: {
-      options: ['all', 'non-rac', 'rac'],
-      selected: 'all',
-      title: 'Filter values'
-    },
-    groupBy: 'level',
-    category: 'denial_category',
-    field: 'receipts',
-    view: {
-      options: ['graph', 'table'],
-      selected: 'graph',
-      title: 'Select View'
-    }
+    data: PropTypes.array.isRequired,
+    filter: PropTypes.object.isRequired,
+    groupBy: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    field: PropTypes.string.isRequired,
+    view: PropTypes.object.isRequired
   }
 
   return WrapperComponent
