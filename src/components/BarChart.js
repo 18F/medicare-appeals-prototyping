@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme, VictoryTooltip } from 'victory';
-import colorByLevel from '../utils/colorByLevel';
+import { colorByLevel } from '../utils/colors';
 
 const BarChart = ({ data, groupBy, field, height, maxDomain }) => {
   return (

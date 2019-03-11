@@ -1,4 +1,4 @@
-const colorByLevel = (x) => {
+export const colorByLevel = (x) => {
   if (x === 1) return '#112E51';
   if (x === 2) return '#0071BC';
   if (x === 3) return '#323A45';
@@ -6,4 +6,11 @@ const colorByLevel = (x) => {
   return '#000000';
 }
 
-export default colorByLevel;
+export const colorIfNegative = val => {
+  if (val < 0) {
+    return "#323A45"
+  }
+  else {
+    return "#5B616B"
+  }
+}

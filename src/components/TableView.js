@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import colorByLevel from '../utils/colorByLevel';
+import { colorByLevel } from '../utils/colors';
 import { formatLabel } from '../utils/formatting';
 
 const TableRow = ({ record, groupBy, field }) => {
@@ -63,8 +63,9 @@ const TableView = ({ data, groupBy, field, category }) => {
         ds-u-sm-padding-x--2
         ds-u-md-padding-x--3
         ds-u-lg-padding-x--7
-        ds-u-margin-top--3
-        ds-u-margin-bottom--2
+        ds-u-sm-padding-top--3
+        ds-u-md-padding-top--4
+        ds-u-lg-padding-top--7
       `}
     >
       {tableRows}
