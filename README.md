@@ -8,6 +8,34 @@ This project will
 
 ## Getting Started
 
+### Using Docker
+
+Docker offers fast, lightweight, automated development environments. [Download Docker](https://www.docker.com/products/docker-desktop) if you don’t have it.
+
+#### Build and run Docker containers
+
+```bash
+docker-compose build
+docker-compose up
+# Development server http://localhost:8000/
+```
+
+#### Database Migrations
+
+Run this the first time, and whenever there are new migrations. Docker containers must be running to execute this command.
+
+```bash
+docker-compose exec web pipenv run migrate
+```
+
+#### Debugging
+
+- Run commands in a one-off container: `docker-compose run web /bin/bash`
+- Connect to running container: `docker-compose exec db /bin/bash`
+- Get a psql shell: `docker-compose exec db psql -U postgres`
+
+### Using your own local environment
+
 #### Pre-reqs
 
 - Python `v3.6.0`

@@ -11,8 +11,7 @@ services:
   db:
     image: postgres:10
     environment:
-      POSTGRES_USER: medicare_appeals_dev  # Creates both user *and database* of this name.
-      POSTGRES_PASSWORD: somepass
+      - POSTGRES_DB=medicare_appeals_dev  # This creates our initial database.
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
