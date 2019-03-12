@@ -8,9 +8,15 @@ import WIPByLevel from '../containers/WIPByLevel';
 import NetReceiptsByLevel from '../containers/NetReceiptsByLevel';
 import AverageProcessingTime from '../containers/AverageProcessingTimeByLevel';
 import OverturnRateByLevel from '../containers/OverturnRateByLevel';
+import Glossary from '../containers/Glossary';
 import { dashboardContext } from '../constants';
 
 const dashboard = (context=dashboardContext) => {
+  ReactDOM.render(
+    <Glossary />,
+    document.getElementById('glossary-button')
+  );
+
   ReactDOM.render(
     <NewReceiptsByLevel data={context} />,
     document.getElementById('new-receipts-by-hhs-level')
