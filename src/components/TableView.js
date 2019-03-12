@@ -15,14 +15,22 @@ const TableRow = ({ record, groupBy, field }) => {
       `}
     >
       <div
-        className="ds-u-padding-x--1"
         style={{
           borderLeft: '6px solid',
           borderColor: colorByLevel(record[groupBy]),
           verticalAlign: 'bottom'
         }}
       >
-        <div className="ds-u-justify-content--center ds-u-align-items--center ds-u-display--flex">
+        <div
+          className={`
+            ds-u-justify-content--center
+            ds-u-align-items--center
+            ds-u-display--flex
+            ds-u-sm-font-size--small
+            ds-u-md-font-size--small
+            ds-u-lg-font-size--base
+          `}
+        >
           <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-margin--0">
           {`${formatLabel(groupBy)}`}
           </p>
@@ -31,12 +39,21 @@ const TableRow = ({ record, groupBy, field }) => {
           </p>
         </div>
       </div>
-      <div className="ds-u-padding-x--1">
-        <div className="ds-u-justify-content--center ds-u-align-items--center ds-u-display--flex">
-          <p className="ds-u-font-weight--bold ds-u-font-size--h3 ds-u-margin--0">
+      <div>
+        <div className="ds-u-justify-content--end ds-u-align-items--baseline ds-u-display--flex">
+          <p
+            className={`
+              ds-u-font-weight--bold
+              ds-u-margin--0
+              ds-u-sm-font-size--h4
+              ds-u-md-font-size--h4
+              ds-u-lg-font-size--h3
+              ds-u-xl-font-size--h2
+            `}
+          >
           {`${record[field].toLocaleString()}`}
           </p>
-          <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-font-size--small ds-u-margin--0">
+          <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-font-size--tiny ds-u-margin--0">
           {`${formatLabel(field)}`}
           </p>
         </div>
@@ -60,11 +77,12 @@ const TableView = ({ data, groupBy, field, category }) => {
   return (
     <div className={`
         ds-l-col--12
-        ds-u-sm-padding-x--2
-        ds-u-md-padding-x--3
-        ds-u-lg-padding-x--7
-        ds-u-sm-padding-top--3
-        ds-u-md-padding-top--4
+        ds-u-sm-padding-x--1
+        ds-u-md-padding-x--2
+        ds-u-lg-padding-x--3
+        ds-u-padding-top--5
+        ds-u-sm-padding-top--5
+        ds-u-md-padding-top--6
         ds-u-lg-padding-top--7
       `}
     >

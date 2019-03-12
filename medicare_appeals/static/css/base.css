@@ -36,3 +36,41 @@ video {
     background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%,rgba(255,255,255,1) 79%,rgba(255,255,255,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccffffff', endColorstr='#ffffff',GradientType=1 );
 }
+
+@media (min-width:0px) {
+    .ds-u-font-size--tiny {
+        font-size: 7px
+    }
+}
+
+@media (min-width:544px) {
+    .ds-u-font-size--tiny {
+        font-size: 8px
+    }
+}
+
+@media (min-width:768px) {
+    .ds-u-font-size--tiny {
+        font-size: 9px
+    }
+}
+
+@media (min-width: 1024) {
+    .ds-u-font-size--tiny {
+        font-size: 11px
+    }
+}
+
+@media (min-width: 1280) {
+    .ds-u-font-size--tiny {
+        font-size: 12px
+    }
+}
+
+@media (min-width: 0px) {
+    .show-small { display: block; }
+}
+
+@media (min-width: 606px) {
+    .show-small { display: none; }
+}

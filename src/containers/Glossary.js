@@ -41,11 +41,13 @@ const Glossary = () => {
                 alignItems="center"
                 justifyContent="flex-end"
               >
-                <IconButton
-                  icon="cross"
-                  appearance="minimal"
-                  onClick={() => setState({ isShown: false })}
-                />
+                <div className="show-small">
+                  <IconButton
+                    icon="cross"
+                    appearance="minimal"
+                    onClick={() => setState({ isShown: false })}
+                  />
+                </div>
               </Pane>
               <Pane padding={16}>
                 <h1 className="ds-title">Glossary</h1>
@@ -86,11 +88,8 @@ const Glossary = () => {
             </Pane>
           </SideSheet>
           <button
-            className="ds-u-fill--white ds-c-button"
+            className="ds-c-button ds-c-button--small ds-c-button--primary"
             onClick={() => setState({ isShown: true })}
-            style={{
-              boxShadow: '5px 3px 5px rgba(0,0,0,0.1)'
-            }}
           >
             Glossary
           </button>
