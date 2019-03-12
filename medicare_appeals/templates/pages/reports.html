@@ -7,15 +7,15 @@
   {% include "components/alert.html" %}
   {% include "components/dashboard-tabs.html" %}
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="New receipt report" %}
-    {% include "components/graph-card-half.html" with card_title="Dispositions report" %}
+    {% include "components/graph-card-half.html" with card_title="New receipt report" card_description="The new receipts report over a timespan" %}
+    {% include "components/graph-card-half.html" with card_title="Dispositions report" card_description="The disposition report over a timespan" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-full.html" with card_title="Pending number of reports" fill="ds-u-fill--green" %}
+    {% include "components/graph-card-full.html" with card_title="Pending number of reports" card_description="The pending appeals report over a timespan" fill="ds-u-fill--green" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="Net appeal report" %}
-    {% include "components/graph-card-half.html" with card_title="RAC report" %}
+    {% include "components/graph-card-half.html" with card_title="Net appeal report" card_description="The net appeals report over a timespan" %}
+    {% include "components/graph-card-half.html" with card_title="RAC report" card_description="The RAC report over a timespan" %}
   </div>
 
   {% load static %}

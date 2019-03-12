@@ -3,6 +3,9 @@
         <div class="ds-u-padding--1 ds-u-border-bottom--2 ds-u-fill--white">
             <div class="ds-u-border-bottom--1 ds-u-padding-x--1">
                 <h3 class="ds-u-margin--0 ds-u-padding-top--1">{{ card_title }}</h3>
+                <p class="ds-u-color--muted ds-u-font-size--small ds-u-margin--0">
+                    {{ card_description }}
+                </p>
             </div>
             <div class="ds-l-row ds-u-margin--1 ds-u-padding--1 {{ fill|default:"ds-u-fill--white" }}" id={{ card_title|slugify }}>
             </div>

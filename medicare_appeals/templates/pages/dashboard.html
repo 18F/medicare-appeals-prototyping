@@ -7,20 +7,20 @@
   {% include "components/alert.html" %}
   {% include "components/dashboard-tabs.html" %}
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="New receipts by HHS Level" %}
-    {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" %}
+    {% include "components/graph-card-half.html" with card_title="New receipts by HHS Level" card_description="The new receipts of appeals over the timespan" %}
+    {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" card_description="The dispositions of appeals over the timespan" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-half.html" with card_title="Work in progress by HHS Level" %}
+    {% include "components/graph-card-half.html" with card_title="Work in progress by HHS Level" card_description="The appeals currently being worked over the timespan" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-full.html" with card_title="Net receipts by level" %}
+    {% include "components/graph-card-full.html" with card_title="Net receipts by level" card_description="The net appeals receipts minus dispositions over the timespan" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-full.html" with card_title="Average processing time" %}
+    {% include "components/graph-card-full.html" with card_title="Average processing time" card_description="The average number of days to close an appeal over the timespan" %}
   </div>
   <div class="ds-l-row ds-u-padding-y--1">
-    {% include "components/graph-card-full.html" with card_title="Total overturn rate" %}
+    {% include "components/graph-card-full.html" with card_title="Total overturn rate" card_description="The average overturn rate of appeals favorable to the appellant over a timespan" %}
   </div>
 
   {% load static %}
