@@ -3,10 +3,12 @@
 {% block bgcolor %}ds-u-fill--gray-lightest{% endblock %}
 {% block title %}{{ title }}{% endblock %}
 
+{% block containerclass %}{% endblock %}
+
 {% block content %}
-<div class="ds-l-row">
+<div class="ds-l-row ds-l-container ds-u-padding--0 ds-u-margin--0">
   {% include "components/navbar.html" %}
-  <div class="ds-l-md-col--10 ds-l-lg-col--10">
+  <div class="ds-l-md-col--10 ds-l-lg-col--10 ds-u-padding-bottom--3">
     {% include "components/alert.html" %}
     {% include "components/dashboard-tabs.html" %}
     <div class="ds-l-row ds-u-padding-y--1">

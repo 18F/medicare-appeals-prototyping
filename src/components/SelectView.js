@@ -13,12 +13,26 @@ const SelectView = ({disabled, name, options, selected, title, setState}) => {
   return (
     <div className="ds-l-col--auto ">
         <label className="ds-c-label ds-u-margin--0" htmlFor="graph-select">
-          <span className="ds-c-field__hint">{title}</span>
+          <span
+            className={`
+              ds-c-field__hint
+              ds-u-font-size--small
+              ds-u-lg-font-size--base
+            `}
+          >
+            {title}
+          </span>
         </label>
         <select
           disabled={disabled}
           value={selected}
-          className="ds-c-field ds-u-padding-y--0 ds-u-border--2"
+          className={`
+            ds-c-field
+            ds-u-padding-y--1
+            ds-u-border--2
+            ds-u-font-size--small
+            ds-u-lg-font-size--base
+          `}
           onChange={(e) => setState(e.target.value, name)}
         >
           { optionList }

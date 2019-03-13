@@ -1,11 +1,21 @@
 {% block navbar %}
-    <aside class="ds-u-margin-top--4 ds-u-md-margin-bottom--0 ds-l-md-col--2 ds-l-lg-col--2">
-        <div style="position: -webkit-sticky; position: sticky;top: 4rem;" class="ds-c-vertical-nav">
-        <div id="glossary-button"  class="ds-c-vertical-nav__item">
-            <button disabled class="ds-c-vertical-nav__label ds-c-button" href="javascript:void(0);">
-                Glossary
-            </button>
-        </li>
+    <aside class="ds-u-md-margin--0 ds-l-col ds-u-fill--white ds-u-border-right--1">
+        <div style="position: -webkit-sticky; position: sticky;top: 4rem;" class="ds-l-row ds-u-margin-top--2 ds-u-sm-margin-top--2 ds-u-md-margin-top--4 ds-c-vertical-nav">
+            <div id="glossary-button" class="ds-l-col ds-l-md-col--3 ds-l-md-col--12 ds-l-lg-col--12 ds-u-margin-bottom--2 ds-u-sm-margin-right--1 ds-u-margin-right--0">
+                <button disabled class="ds-c-button ds-c-button--small">
+                    Glossary
+                </button>
+            </div>
+            <div id="print-button" class="ds-l-col ds-l-md-col--12 ds-l-lg-col--12 ds-u-margin-bottom--2 ds-u-sm-margin-right--1 ds-u-margin-right--0">
+                <button disabled class="ds-c-button ds-c-button--small ds-c-button--primary" href="javascript:void(0);">
+                    Print
+                </button>
+            </div>
+            <div id="Email-button" class="ds-l-col ds-l-md-col--12 ds-l-lg-col--12 ds-u-margin-bottom--2 ds-u-sm-margin-right--1 ds-u-margin-right--0">
+                <button disabled class="ds-c-button ds-c-button--small ds-c-button--primary" href="javascript:void(0);">
+                    Email
+                </button>
+            </div>
         </div>
     </aside>
 {% endblock %}

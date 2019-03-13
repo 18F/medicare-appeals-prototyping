@@ -26,12 +26,12 @@ const DataColumns = ({ data, groupBy, label, }) => {
             <div
               className="ds-u-align-items--center ds-u-display--flex"
               style={{
-                borderLeft: '6px solid',
+                borderBottom: '6px solid',
                 borderColor: colorByLevel(record[groupBy]),
                 verticalAlign: 'bottom'
               }}
             >
-              <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-margin--0">
+              <p className="ds-u-margin-right--1 ds-u-color--muted ds-u-margin--0">
               {`${formatLabel(groupBy)}`}
               </p>
               <p className="ds-u-font-weight--bold ds-u-margin--0">
@@ -51,6 +51,10 @@ const DataColumns = ({ data, groupBy, label, }) => {
           >
             {`${record[label].toLocaleString()}`}
           </h1>
+        </div>
+        <div
+          className="ds-u-justify-content--center ds-u-align-items--baseline ds-u-display--flex"
+        >
           <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-font-size--small ds-u-margin--0">
           {`${formatLabel(label)}`}
           </p>
