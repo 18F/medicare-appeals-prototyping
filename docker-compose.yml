@@ -1,19 +1,36 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-web
     ports:
       - "8000:8000"
-    volumes:
-      - .:/medappeals
     depends_on:
       - db
+      - frontend
+    volumes:
+      - static_dist:/medappeals/medicare_appeals/static/dist
+    environment:
+      - DJANGO_SETTINGS_MODULE=medicare_appeals.settings.dev
+      - DATABASE_URL=postgres://medicare_appeals_user:password@db/medicare_appeals_dev
+    command: "pipenv run ./manage.py runserver 0.0.0.0:8000"
   db:
     image: postgres:10
     environment:
-      - POSTGRES_DB=medicare_appeals_dev  # This creates our initial database.
+      - POSTGRES_DB=medicare_appeals_dev
+      - POSTGRES_USER=medicare_appeals_user
+      - POSTGRES_PASSWORD=password
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    volumes:
+      - static_dist:/medappeals/medicare_appeals/static/dist
+    working_dir: /medappeals
+    entrypoint: "npm run build"
 volumes:
   postgres_data:
+  static_dist:

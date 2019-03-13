@@ -16,6 +16,7 @@ Docker offers fast, lightweight, automated development environments. [Download D
 
 ```bash
 docker-compose build
+docker-compose run web pipenv run python manage.py migrate
 docker-compose up
 # Development server http://localhost:8000/
 ```
