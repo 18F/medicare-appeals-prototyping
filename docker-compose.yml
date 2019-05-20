@@ -10,6 +10,7 @@ services:
       - db
       - frontend
     volumes:
+      - .:/medappeals/
       - static_dist:/medappeals/medicare_appeals/static/dist
     environment:
       - DJANGO_SETTINGS_MODULE=medicare_appeals.settings.dev
