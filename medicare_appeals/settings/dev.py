@@ -12,7 +12,7 @@ MIDDLEWARE = MIDDLEWARE + ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
 INSTALLED_APPS = INSTALLED_APPS + ['debug_toolbar']
 
-UAA_CLIENT_ID = 'testtesttesttesttesttesttesttesttesttesttest'
-UAA_CLIENT_SECRET = 'testtesttesttesttesttesttesttesttesttest'
-UAA_AUTH_URL = 'fake:'
-UAA_TOKEN_URL = 'fake:'
+UAA_CLIENT_ID = 'testtesttesttesttesttesttesttesttesttesttest'  # nosec
+UAA_CLIENT_SECRET = 'testtesttesttesttesttesttesttesttesttest'  # nosec
+UAA_AUTH_URL = 'fake:'  # nosec
+UAA_TOKEN_URL = 'fake:' # nosec

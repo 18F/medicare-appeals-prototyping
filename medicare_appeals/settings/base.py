@@ -99,8 +99,8 @@ STATICFILES_DIRS = [
 UAA_APPROVED_DOMAINS = {}
 UAA_CLIENT_ID = env.get_credential('UAA_CLIENT_ID', None)
 UAA_CLIENT_SECRET = env.get_credential('UAA_CLIENT_SECRET', None)
-UAA_AUTH_URL = 'https://login.fr.cloud.gov/oauth/authorize'
-UAA_TOKEN_URL = 'https://uaa.fr.cloud.gov/oauth/token'
-UAA_LOGOUT_URL = 'https://login.fr.cloud.gov/logout.do'
+UAA_AUTH_URL = 'https://login.fr.cloud.gov/oauth/authorize' # nosec
+UAA_TOKEN_URL = 'https://uaa.fr.cloud.gov/oauth/token'  # nosec
+UAA_LOGOUT_URL = 'https://login.fr.cloud.gov/logout.do' # nosec
 
 #AUTO_LOGOUT_DELAY_MINUTES = 60
