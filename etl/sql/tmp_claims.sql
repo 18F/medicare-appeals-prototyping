@@ -8,7 +8,7 @@ as
     from
     ((
         select
-            control_number as original_claim_id,
+            lower(regexp_replace(control_number::varchar, '\W+', '', 'g')) as original_claim_id,
             coalesce(dollar_amount, 0.0) as amount_billed,
             coalesce(covered_charge, 0.0) as amount_paid,
             coalesce(non_covered_charge, 0.0) as amount_controversy,
@@ -21,8 +21,8 @@ as
                 then 'true'::boolean
                 else 'false'::boolean
             end as appellant_rac,
-            trim(from npi::char(10)) as national_provider_id,
-            provider_business_name as provider_name,
+            lower(regexp_replace(npi::varchar, '\W+', '', 'g')) as national_provider_id,
+            lower(regexp_replace(provider_business_name, '\W+', '', 'g')) as provider_name,
             appeal_start_date as status_open_data,
             decision_issued_date as status_closed_data,
             appeal_disposition as status_closed_action,
@@ -34,7 +34,7 @@ as
             lvl1_appeals
         ) union (
         select
-            control_number as original_claim_id,
+            lower(regexp_replace(control_number::varchar, '\W+', '', 'g')) as original_claim_id,
             coalesce(item_original_amount_claim_sum, 0.0) as amount_billed,
             0.00 as amount_paid,
             0.00 as amount_controversy,
@@ -43,8 +43,8 @@ as
             medicare_type as appellant_medicare_type,
             appeal_category as appellant_appeal_category,
             rac_flag as appellant_rac,
-            trim(from npi::char(10)) as national_provider_id,
-            provider_business_name as provider_name,
+            lower(regexp_replace(npi::varchar, '\W+', '', 'g')) as national_provider_id,
+            lower(regexp_replace(provider_business_name, '\W+', '', 'g')) as provider_name,
             appeal_start_date as status_open_data,
             appeal_end_date as status_closed_data,
             appeal_disposition as status_closed_action,
@@ -56,7 +56,7 @@ as
             lvl2_appeals
         ) union (
         select
-            control_number as original_claim_id,
+            lower(regexp_replace(control_number::varchar, '\W+', '', 'g')) as original_claim_id,
             coalesce(item_original_amount_claim_sum, 0.0) as amount_billed,
             0.00 as amount_paid,
             0.00 as amount_controversy,
@@ -65,8 +65,8 @@ as
             medicare_type as appellant_medicare_type,
             appeal_category as appellant_appeal_category,
             rac_flag as appellant_rac,
-            trim(from npi::char(10)) as national_provider_id,
-            provider_business_name as provider_name,
+            lower(regexp_replace(npi::varchar, '\W+', '', 'g')) as national_provider_id,
+            lower(regexp_replace(provider_business_name, '\W+', '', 'g')) as provider_name,
             appeal_start_date as status_open_data,
             appeal_end_date as status_closed_data,
             appeal_disposition as status_closed_action,
@@ -78,7 +78,7 @@ as
             lvl3_appeals_lvl2_related
         ) union (
         select
-            claim_number,
+            lower(regexp_replace(claim_number::varchar, '\W+', '', 'g')) as original_claim_id,
             0.00 as amount_billed,
             0.00 as amount_paid,
             0.00 as amount_controversy,
@@ -87,8 +87,8 @@ as
             medicare_type as appellant_medicare_type,
             appeal_category as appellant_appeal_category,
             null as appellant_rac,
-            trim(from npi::char(10)) as national_provider_id,
-            provider_name as provider_name,
+            lower(regexp_replace(npi::varchar, '\W+', '', 'g')) as national_provider_id,
+            lower(regexp_replace(provider_name, '\W+', '', 'g')) as provider_name,
             null as status_open_data,
             null as status_closed_data,
             null as status_closed_action,
@@ -100,7 +100,7 @@ as
             lvl3_appeals
         ) union (
         select
-            control_number as original_claim_id,
+            lower(regexp_replace(control_number::varchar, '\W+', '', 'g')) as original_claim_id,
             coalesce(item_original_amount, 0.0) as amount_billed,
             0.00 as amount_paid,
             0.00 as amount_controversy,
@@ -109,8 +109,8 @@ as
             medicare_part as appellant_medicare_type,
             appeal_category as appellant_appeal_category,
             null as appellant_rac,
-            trim(from npi::char(10)) as national_provider_id,
-            provider_business_name as provider_name,
+            lower(regexp_replace(npi::varchar, '\W+', '', 'g')) as national_provider_id,
+            lower(regexp_replace(provider_business_name, '\W+', '', 'g')) as provider_name,
             complete_request_received_date as status_open_data,
             decision_letter_mailed_date as status_closed_data,
             appeal_disposition as status_closed_action,
