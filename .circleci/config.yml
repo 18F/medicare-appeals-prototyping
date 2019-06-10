@@ -78,14 +78,14 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Login to cloud.gov Staging
+          name: Login to cloud.gov
           command: cf login -a ${CF_API} -u ${CF_DEPLOYER_USERNAME} -p ${CF_DEPLOYER_PASSWORD}
       - run:
           name: Save version to file system
           command: echo ${CIRCLE_SHA1} > VERSION
       - run:
           name: deploy prototype to cloud.gov
-          command: cf_deploy.sh medicare-appeals-prototype-app ${CF_ORG} ${CF_SPACE} manifest.yml
+          command: cf_deploy.sh medicare-appeals-app ${CF_ORG} ${CF_SPACE} manifest.yml
 
 workflows:
   version: 2
