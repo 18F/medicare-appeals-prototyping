@@ -12,7 +12,7 @@ where
 update
     tmp_claims
 set
-  original_claim_id = claim_id_mapping.alt_original_claim_id
+    original_claim_id = claim_id_mapping.alt_original_claim_id
 from
     claim_id_mapping
 where
@@ -54,3 +54,12 @@ from
     reviewer_mapping
 where
     tmp_appeals.reviewer_name = reviewer_mapping.reviewer_name;
+
+update
+    tmp_procedure_codes
+set
+    original_claim_id = claim_id_mapping.alt_original_claim_id
+from
+    claim_id_mapping
+where
+    tmp_procedure_codes.original_claim_id = claim_id_mapping.original_claim_id;

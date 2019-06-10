@@ -56,6 +56,13 @@ def createappeals(c):
     sql.close()
     c.run(f'echo "Created tmp_appeals {elapsed()}seconds"')
 
+@task()
+def createprocedures(c):
+    sql = open('./sql/tmp_procedure_codes.sql', 'r')
+    cur.execute(sql.read())
+    sql.close()
+    c.run(f'echo "Created tmp_procedure_codes.sql {elapsed()}seconds"')
+
 
 @task()
 def createclaimstoappeals(c):
@@ -94,6 +101,7 @@ def cleanup(c):
         dbsetup,
         createclaims,
         createappeals,
+        createprocedures,
         createmappings,
         sanitize,
         createclaimstoappeals,

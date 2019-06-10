@@ -9,19 +9,20 @@ truncate appeal_to_claim cascade;
 
 insert into claim
 select
-    id,
+    distinct on (tc.id)
+    tc.id,
     null as description,
-    original_claim_id,
-    appellant_appeal_category as claim_type,
-    null as code,
-    appellant_appeal_category as service_place,
-    coalesce(amount_billed, 0.0) as amount_paid,
-    coalesce(amount_paid, 0.0) as amount_paid,
-    coalesce(amount_controversy, 0.0) as amount_controversy,
+    tc.original_claim_id,
+    tc.appellant_appeal_category as claim_type,
+    tpc.code as code,
+    tc.appellant_appeal_category as service_place,
+    coalesce(tc.amount_billed, 0.0) as amount_paid,
+    coalesce(tc.amount_paid, 0.0) as amount_paid,
+    coalesce(tc.amount_controversy, 0.0) as amount_controversy,
     now() at time zone 'utc' as created_at,
     now() at time zone 'utc' as updated_at
 from
-    tmp_claims;
+    tmp_claims tc left join tmp_procedure_codes tpc using (original_claim_id);
 
 insert into holistic_appeal
 select

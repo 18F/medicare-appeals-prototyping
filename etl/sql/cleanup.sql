@@ -13,6 +13,7 @@ drop table if exists tmp_l1;
 drop table if exists tmp_l12;
 drop table if exists tmp_l123;
 drop table if exists tmp_l1234;
+drop table if exists tmp_procedure_codes;
 
 -- drop table if exists lvl1_appeals;
 -- drop table if exists lvl1_appeals_diagnosis_codes;
