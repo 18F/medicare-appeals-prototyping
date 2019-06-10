@@ -21,13 +21,31 @@ docker-compose up
 # Development server http://localhost:8000/
 ```
 
-#### Database Migrations
+#### Database migrations
 
 Run this the first time, and whenever there are new migrations. Docker containers must be running to execute this command.
 
 ```bash
 docker-compose exec web pipenv run migrate
 ```
+
+#### ETL loading sample data
+
+```
+docker-compose run etl bash ./scripts/insert_data.sh
+
+docker-compose run etl pipenv run invoke createdata
+```
+
+#### Connecting to the database with PSQL
+
+'''
+# Run psql connection command
+docker-compose run db psql -h db -U medicare_appeals_user medicare_appeals_dev
+
+# Next enter password `password`
+Password for user medicare_appeals_user: password
+'''
 
 #### Debugging
 

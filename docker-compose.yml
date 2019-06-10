@@ -16,6 +16,17 @@ services:
       - DJANGO_SETTINGS_MODULE=medicare_appeals.settings.dev
       - DATABASE_URL=postgres://medicare_appeals_user:password@db/medicare_appeals_dev
     command: "pipenv run ./manage.py runserver 0.0.0.0:8000"
+  etl:
+    build:
+      context: ./etl
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./etl:/etl
+    environment:
+      - DATABASE_URL=postgres://medicare_appeals_user:password@db/medicare_appeals_dev
+    command: "pipenv run python --version"
   db:
     image: postgres:10
     environment:

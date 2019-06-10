@@ -1,0 +1,35 @@
+drop function if exists generate_provider_name;
+drop function if exists generate_appellant_name;
+
+drop table if exists appellant_mapping;
+drop table if exists claim_id_mapping;
+drop table if exists provider_id_mapping;
+drop table if exists provider_name_mapping;
+drop table if exists reviewer_mapping;
+drop table if exists tmp_appeals;
+drop table if exists tmp_claims;
+drop table if exists tmp_holistic_appeals;
+drop table if exists tmp_l1;
+drop table if exists tmp_l12;
+drop table if exists tmp_l123;
+drop table if exists tmp_l1234;
+drop table if exists tmp_procedure_codes;
+
+-- drop table if exists lvl1_appeals;
+-- drop table if exists lvl1_appeals_diagnosis_codes;
+-- drop table if exists lvl1_appeals_procedure_codes;
+-- drop table if exists lvl2_appeals;
+-- drop table if exists lvl2_appeals_diagnosis_codes;
+-- drop table if exists lvl2_appeals_lvl1_related;
+-- drop table if exists lvl2_appeals_procedure_codes;
+-- drop table if exists lvl3_appeals;
+-- drop table if exists lvl3_appeals_lvl1_related;
+-- drop table if exists lvl3_appeals_lvl2_related;
+-- drop table if exists lvl3_appeals_lvl2_related_diagnosis_codes;
+-- drop table if exists lvl3_appeals_lvl2_related_procedure_codes;
+-- drop table if exists lvl4_appeals;
+-- drop table if exists lvl4_appeals_lvl1_related;
+-- drop table if exists lvl4_appeals_lvl2_related;
+-- drop table if exists lvl4_appeals_lvl3_related;
+-- drop table if exists lvl4_appeals_lvl3_related_diagnosis_codes;
+-- drop table if exists lvl4_appeals_lvl3_related_procedure_codes;
