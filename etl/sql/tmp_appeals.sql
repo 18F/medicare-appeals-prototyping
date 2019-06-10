@@ -1,98 +1,123 @@
-drop table if exists tmp_lvl3_appeals;
-drop table if exists tmp_lvl2_appeals;
-drop table if exists tmp_lvl1_appeals;
-truncate appeal cascade;
+drop table if exists tmp_appeals;
 
 create table if not exists
-    tmp_lvl3_appeals
+    tmp_appeals
 as
     select
-        distinct on (data.lvl3_appeal_number)
+        uuid_generate_v4() as id,
+        null::uuid as holistic_appeal_id,
         data.*
     from
     ((
         select
-            null as lvl4_appeal_number,
-            reconsider_number as lvl3_appeal_number,
+            distinct on (lvl4_docket_number)
+            lvl4_docket_number as original_appeal_id,
+            lower(medicare_part::varchar) as medicare_part,
+            lower(service_category::varchar) as service_category,
+            lvl4_appeal_received_date as status_open_date,
+            null::date as status_closed_date,
+            lvl4_appeal_status as status_closed_action,
+            null as reviewer_name,
+            'DAB' as reviewer_type,
+            null as location,
+            'level 4' as level,
+            'lvl4_appeals' as table_name
+        from
+            lvl4_appeals
+    ) union (
+        select
+            distinct on (reconsider_number)
+            reconsider_number as original_appeal_id,
+            lower(medicare_type::varchar) as medicare_part,
+            lower(appeal_category::varchar) as service_category,
+            dt_comp_rqst_recd as status_open_date,
+            null::date as status_closed_date,
+            workflow_state as status_closed_action,
+            lower(regexp_replace(adj_team_name::varchar, '\W+', '', 'g')) as reviewer_name,
+            'ALJ' as reviewer_type,
+            field_office as location,
+            'level 3' as level,
             'lvl3_appeals' as table_name
         from
             lvl3_appeals
     ) union (
         select
-            l4.lvl4_docket_number as lvl4_appeal_number,
-            l3.lvl3_appeal_number,
-            'lvl4_appeals_lvl3_related' as table_name
+            distinct on (regexp_split_to_table(lvl3_appeal_number::text, ',\s+'))
+            regexp_split_to_table(lvl3_appeal_number::text, ',\s+') as original_appeal_id,
+            lower(medicare_part::varchar) as medicare_part,
+            lower(service_category::varchar) as service_category,
+            null as status_open_date,
+            lv3_decision_letter_mail_date as status_closed_date,
+            lvl3_appeal_disposition as status_closed_action,
+            null as reviewer_name,
+            'DAB' as reviewer_type,
+            null as location,
+            'level 3' as level,
+            'lvl4_appeals' as table_name
         from
-            lvl4_appeals_lvl3_related l3 inner join lvl4_appeals l4 using (lvl3_appeal_number)
-    )) as data
-    where
-        data.lvl3_appeal_number is not null;
-
-create table if not exists
-    tmp_lvl2_appeals
-as
-    select
-        data.*
-    from
-    ((
-        select
-            appeal_number as lvl2_appeal_number,
-            null as lvl3_appeal_number,
-            'lvl2_appeals' as table_name
-        from
-            lvl2_appeals
+            lvl4_appeals
     ) union (
         select
-            lvl2_appeal_number,
-            null as lvl3_appeal_number,
-            'lvl3_appeals_lvl2_related' as table_name
-        from
-            lvl3_appeals_lvl2_related
-    ) union (
-        select
-            lvl2_appeal_number,
-            lvl3_appeal_number,
+            distinct on (lvl2_appeal_number)
+            lvl2_appeal_number as original_appeal_id,
+            lower(medicare_type::varchar) as medicare_part,
+            lower(appeal_category::varchar) as service_category,
+            lvl2_appeal_start_date as status_open_date,
+            lvl2_appeal_end_date as status_closed_date,
+            lvl2_appeal_disposition as status_closed_action,
+            lower(regexp_replace(lvl2_organization_name::varchar, '\W+', '', 'g')) as reviewer_name,
+            lvl2_organization_name as reviewer_type,
+            null as location,
+            'level 2' as level,
             'lvl4_appeals_lvl2_related' as table_name
         from
             lvl4_appeals_lvl2_related
-    )) as data
-    where
-        lvl2_appeal_number is not null;
-
-create table if not exists
-    tmp_lvl1_appeals
-as
-    select
-        data.*
-    from
-    ((
-        select
-            appeal_number as lvl1_appeal_number,
-            null as lvl2_appeal_number,
-            'lvl1_appeals' as table_name
-        from
-            lvl1_appeals
     ) union (
         select
-            lvl1_appeal_number,
-            lvl2_appeal_number,
-            'lvl2_appeals_lvl1_related' as table_name
+            distinct on (lvl1_appeal_number)
+            lvl1_appeal_number as original_appeal_id,
+            lower(medicare_type::varchar) as medicare_part,
+            lower(appeal_category::varchar) as service_category,
+            lvl1_appeal_start_date as status_open_date,
+            lvl1_appeal_end_date as status_closed_date,
+            lvl1_appeal_disposition as status_closed_action,
+            lower(regexp_replace(lvl1_organization_name::varchar, '\W+', '', 'g')) as reviewer_name,
+            lvl1_organization_name as reviewer_type,
+            null as location,
+            'level 1' as level,
+            'lvl4_appeals_lvl1_related' as table_name
         from
-            lvl2_appeals_lvl1_related
+            lvl4_appeals_lvl1_related
     ) union (
         select
-            lvl1_appeal_number,
-            lvl2_appeal_number,
+            distinct on (lvl1_appeal_number)
+            lvl1_appeal_number as original_appeal_id,
+            lower(medicare_type::varchar) as medicare_part,
+            lower(appeal_category::varchar) as service_category,
+            lvl1_appeal_start_date as status_open_date,
+            lvl1_appeal_end_date as status_closed_date,
+            lvl1_appeal_disposition as status_closed_action,
+            lower(regexp_replace(lvl1_organization_name::varchar, '\W+', '', 'g')) as reviewer_name,
+            lvl1_organization_name as reviewer_type,
+            null as location,
+            'level 1' as level,
             'lvl3_appeals_lvl1_related' as table_name
         from
             lvl3_appeals_lvl1_related
     ) union (
         select
-            lvl1_appeal_number,
-            lvl2_appeal_number,
-            'lvl4_appeals_lvl1_related' as table_name
+            distinct on (lvl1_appeal_number)
+            lvl1_appeal_number as original_appeal_id,
+            lower(medicare_type::varchar) as medicare_part,
+            lower(appeal_category::varchar) as service_category,
+            lvl1_appeal_start_date as status_open_date,
+            lvl1_appeal_end_date as status_closed_date,
+            appeal_disposition as status_closed_action,
+            lower(regexp_replace(mac_organization_name::varchar, '\W+', '', 'g')) as reviewer_name,
+            mac_organization_name as reviewer_type,
+            null as location,
+            'level 1' as level,
+            'lvl2_appeals_lvl1_related' as table_name
         from
-            lvl4_appeals_lvl1_related
-    )) as data
-    where
-        lvl1_appeal_number is not null;
+            lvl2_appeals_lvl1_related
+    )) as data;

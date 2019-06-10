@@ -47,6 +47,7 @@ class Appeal(models.Model):
         max_length=100, choices=choices.REQUESTOR_TYPE, null=True)
     service_category = models.CharField(
         max_length=100, choices=choices.APPEAL_SERVICE_CATEGORY, null=True)
+    rac = models.BooleanField(default=False)
     claims = models.ManyToManyField(
         Claim,
         through='AppealToClaim',
@@ -100,6 +101,8 @@ class Level(models.Model):
     appeal = models.OneToOneField('Appeal', on_delete=models.CASCADE)
     holistic_appeal = models.ForeignKey(
         'HolisticAppeal', on_delete=models.CASCADE)
+    appeal = models.ForeignKey(
+        'Appeal', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -109,7 +112,7 @@ class Provider(models.Model):
         db_table = 'provider'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    description = models.CharField(max_length=250)
+    description = models.CharField(max_length=250, null=True)
     provider_type = models.CharField(
         max_length=100, choices=choices.PROVIDER_TYPE, null=True)
     national_provider_id = models.CharField(max_length=50)

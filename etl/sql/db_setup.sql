@@ -75,3 +75,80 @@ $$
             return provider_name;
     end;
 $$ language plpgsql;
+
+
+create or replace function generate_appellant_name()
+returns text as
+$$
+    declare
+        appellant_name varchar;
+    begin
+            select
+                (array[
+                    'Heather',
+                    'Karen',
+                    'Suart',
+                    'Amy',
+                    'Sonia',
+                    'Tamyka',
+                    'Tonya',
+                    'Katie',
+                    'Elmer',
+                    'Alyssia',
+                    'Renualt',
+                    'Henry',
+                    'Hank',
+                    'Terrel',
+                    'Owen',
+                    'Juan',
+                    'Chin',
+                    'Dupree',
+                    'Eduardo',
+                    'Daniela Maria',
+                    'Timmothy',
+                    'Norman',
+                    'Denise',
+                    'Drica',
+                    'Sophia',
+                    'Carlo',
+                    'Antonio',
+                    'Ingrid',
+                    'Peter',
+                    'Vinucio'
+                ])[ceil(random()*30)] || ' ' || (array[
+                    'Con',
+                    'Heathrow',
+                    'Lima',
+                    'Ingressado',
+                    'Homem',
+                    'Smith',
+                    'McDonald',
+                    'Chan',
+                    'Tamagotchi',
+                    'Peters',
+                    'Johnson',
+                    'Washington',
+                    'Ronaldo',
+                    'Carlos',
+                    'Kroeger',
+                    'ODoyle',
+                    'Chambers',
+                    'Sanoita',
+                    'Campo',
+                    'Douglas',
+                    'Greene',
+                    'Willis',
+                    'Frankfourt',
+                    'Tang',
+                    'Jennsen',
+                    'Korp',
+                    'Quantis',
+                    'Ingles',
+                    'Tomas',
+                    'Brogdan'
+                ])[ceil(random()*30)]
+            into appellant_name;
+
+            return appellant_name;
+    end;
+$$ language plpgsql;
