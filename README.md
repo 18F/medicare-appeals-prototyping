@@ -39,13 +39,45 @@ docker-compose run etl pipenv run invoke createdata
 
 #### Connecting to the database with PSQL
 
-'''
+```
 # Run psql connection command
 docker-compose run db psql -h db -U medicare_appeals_user medicare_appeals_dev
 
 # Next enter password `password`
 Password for user medicare_appeals_user: password
-'''
+```
+
+#### Creating a local pg_dump
+
+```
+docker-compose run db pg_dump postgres://medicare_appeals_user:password@db/medicare_appeals_dev -a -F c -f /var/lib/postgresql/data/extract.pg
+docker cp <CONTAINER_ID>:/var/lib/postgresql/data/extract.pg ./extract.pg
+```
+
+### Migrating local database extract to a Cloud.gov's shared-psql database
+
+```
+## Run ETL process for the sample data to load data into the model locally
+docker-compose run etl bash ./scripts/insert_data.sh
+docker-compose run etl pipenv run invoke createdata
+
+## Create a dump of the data to be loaded into the Cloud.gov database
+docker-compose run db pg_dump postgres://medicare_appeals_user:password@db/medicare_appeals_dev -a -F c -f /var/lib/postgresql/data/extract.pg
+docker cp <CONTAINER_ID>:/var/lib/postgresql/data/extract.pg ./extract.pg
+
+## Install the `connect-to-service` database plugin to be able to connect to remote database
+cf connect-to-service --no-client medicare-appeals-app medicare-appeals-database
+// returns
+// Host: localhost
+// Port: <PORT>
+// Username: <USER>
+// Password: <PASSWORD>
+// Name: <DATABASE_NAME>
+
+## Use your local extract created after running the ETL pipeline
+pg_restore -U <USER> -h 127.0.0.1 -p <PORT> -d <DATABASE_NAME> --clean --no-owner --no-acl ./extract.pg
+enter password: <PASSWORD>
+```
 
 #### Debugging
 
