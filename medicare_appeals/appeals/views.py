@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import viewsets
-from medicare_appeals.appeals import models, serializers
+from rest_framework.response import Response
+from medicare_appeals.appeals import models
+from medicare_appeals.appeals import queries
+from medicare_appeals.appeals import schema
+from medicare_appeals.appeals import serializers
 
 
 def index(request):
@@ -83,3 +87,21 @@ class StatusViewset(viewsets.ModelViewSet):
     """
     queryset = models.Status.objects.all()
     serializer_class = serializers.StatusSerializer
+
+
+class OverviewView(viewsets.ViewSet):
+    """
+    API endpoint to query the overview aggregates
+    """
+
+    queryset = models.Appeal.objects.all()
+
+    def list(self, request, format=None):
+        """
+        Return a list of overview values.
+        """
+        results = schema.dashboard()
+        start = request.query_params.get('start', None)
+        end = request.query_params.get('end', None)
+        query_results = queries.get_overview(start, end, results=results)
+        return Response(query_results)

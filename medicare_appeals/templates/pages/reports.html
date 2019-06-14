@@ -27,8 +27,11 @@
   {% load static %}
   <script src="{% static 'Build.reports.js' %}"></script>
   <script>
+    {% autoescape off %}
+      var data = {{ data }};
+    {% endautoescape %}
     window.addEventListener('load', function() {
-      Build.reports.default.reports()
+      Build.reports.default.reports(data)
     });
   </script>
 {% endblock %}

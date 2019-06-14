@@ -32,8 +32,11 @@
   {% load static %}
   <script src="{% static 'Build.dashboard.js' %}"></script>
   <script>
+    {% autoescape off %}
+      var data = {{ data }};
+    {% endautoescape %}
     window.addEventListener('load', function() {
-      Build.dashboard.default.dashboard()
+      Build.dashboard.default.dashboard(data)
     });
   </script>
 

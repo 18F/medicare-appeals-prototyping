@@ -85,6 +85,37 @@ const Glossary = () => {
                   <div>An appellant is the identified entity that is related to an appeal</div>
                 </div>
               </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
+                    Claim
+                  </h3>
+                  <div>An Medicare claims which has been denied and is now being appealed</div>
+                </div>
+              </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
+                    Holistic Appeal
+                  </h3>
+                  <div>
+                    A series of interconnected appeals that represent the entire lifecycle of an
+                    appellant's claims.
+                  </div>
+                </div>
+              </Card>
             </Pane>
           </SideSheet>
           <button

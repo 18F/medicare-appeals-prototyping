@@ -19,6 +19,7 @@ router.register(r'holistic_appeals', views.HolisticAppealViewSet)
 router.register(r'levels', views.LevelViewset)
 router.register(r'providers', views.ProviderViewset)
 router.register(r'statuses', views.StatusViewset)
+router.register(r'overview', views.OverviewView, base_name='overview')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,18 +27,15 @@ urlpatterns = [
     path('dashboard/', dashboard_views.dashboard),
     path('reports/', dashboard_views.reports),
     path('api/', include(router.urls)),
-    re_path(
-        r'^docs(?P<format>\.json|\.yaml)$',
-        schema_view.without_ui(cache_timeout=0),
-        name='schema-json'),
-    re_path(
-        r'^docs/$',
-        schema_view.with_ui('swagger', cache_timeout=0),
-        name='schema-swagger-ui'),
-    re_path(
-        r'^redoc/$',
-        schema_view.with_ui('redoc', cache_timeout=0),
-        name='schema-redoc'),
+    re_path(r'^docs(?P<format>\.json|\.yaml)$',
+            schema_view.without_ui(cache_timeout=0),
+            name='schema-json'),
+    re_path(r'^docs/$',
+            schema_view.with_ui('swagger', cache_timeout=0),
+            name='schema-swagger-ui'),
+    re_path(r'^redoc/$',
+            schema_view.with_ui('redoc', cache_timeout=0),
+            name='schema-redoc'),
 ]
 
 if settings.DEBUG:
