@@ -68,3 +68,41 @@ def dashboard():
 
     return results.copy()
 
+def total_days():
+    results = {
+        'level 1': {
+            'rac': {
+                'days': [],
+            },
+            'non-rac': {
+                'days': [],
+            }
+        },
+        'level 2': {
+            'rac': {
+                'days': [],
+            },
+            'non-rac': {
+                'days': [],
+            }
+        },
+        'level 3': {
+            'rac': {
+                'days': [],
+            },
+            'non-rac': {
+                'days': [],
+            }
+        },
+        'level 4': {
+            'rac': {
+                'days': [],
+            },
+            'non-rac': {
+                'days': [],
+            }
+        }
+    }
+
+    return results.copy()
+

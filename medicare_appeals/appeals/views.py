@@ -1,10 +1,11 @@
-import datetime
-import pytz
 from django.shortcuts import render
 from django.conf import settings
-from django.db.models import Count
-from rest_framework import response, viewsets, views
-from medicare_appeals.appeals import models, serializers, schema
+from rest_framework import viewsets
+from rest_framework.response import Response
+from medicare_appeals.appeals import models
+from medicare_appeals.appeals import queries
+from medicare_appeals.appeals import schema
+from medicare_appeals.appeals import serializers
 
 
 def index(request):
@@ -88,59 +89,6 @@ class StatusViewset(viewsets.ModelViewSet):
     serializer_class = serializers.StatusSerializer
 
 
-def format_dashboard_response(results=schema.dashboard()):
-    output = []
-
-    for level, racs in results.items():
-        level_number = int(level.split()[1])
-        for rac, counts in racs.items():
-            sub_item = {}
-            sub_item['level'] = level_number
-            sub_item['denial_category'] = rac
-            sub_item.update(counts)
-            output.append(sub_item)
-
-    return output
-
-
-def get_receipt_dispositions(start=None, end=None, results=schema.dashboard()):
-    appeal_status = models.Appeal.objects.values(
-        'id', 'level__level_name','status__category', 'rac').order_by(
-            'id','-status__created_at'
-                ).distinct('id')
-
-    if start and end:
-        try:
-            s_year, s_month, s_day = start.split('-')
-            e_year, e_month, e_day = end.split('-')
-            start_date = datetime.datetime(int(s_year), int(s_month), int(s_day), tzinfo=pytz.UTC)
-            end_date = datetime.datetime(int(e_year), int(e_month), int(e_day), tzinfo=pytz.UTC)
-
-            appeal_status = appeal_status.filter(
-                status__created_at__range=(
-                    start_date,
-                    end_date
-                ))
-        except Exception as e:
-            print(f'{e}')
-            pass
-
-    for item in appeal_status:
-        rac = 'rac'
-
-        if item['rac'] == False:
-            rac = 'non-rac'
-
-        if item['status__category'] == 'Closed':
-            results[item['level__level_name']][rac]['dispositions'] = results.get(
-                item['level__level_name'], {}).get(rac).get('dispositions', 0) + 1
-        else:
-            results[item['level__level_name']][rac]['receipts'] = results.get(
-                item['level__level_name'], {}).get(rac).get('receipts', 0) + 1
-
-    return results
-
-
 class OverviewView(viewsets.ViewSet):
     """
     API endpoint to query the overview aggregates
@@ -155,6 +103,5 @@ class OverviewView(viewsets.ViewSet):
         results = schema.dashboard()
         start = request.query_params.get('start', None)
         end = request.query_params.get('end', None)
-        query_results = get_receipt_dispositions(start, end, results=results)
-        output = format_dashboard_response(query_results)
-        return response.Response(output)
+        query_results = queries.get_overview(start, end, results=results)
+        return Response(query_results)
