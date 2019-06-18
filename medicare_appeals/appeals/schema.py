@@ -68,6 +68,7 @@ def dashboard():
 
     return results.copy()
 
+
 def total_days():
     results = {
         'level 1': {

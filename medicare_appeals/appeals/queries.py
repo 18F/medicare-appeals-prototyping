@@ -5,6 +5,7 @@ from django.db.models import Count, Max, Min, Q
 from medicare_appeals.appeals import models
 from medicare_appeals.appeals import schema
 
+
 def format_overview_response(results=schema.dashboard()):
     output = []
 
@@ -92,6 +93,7 @@ def get_work_in_progress(start=None, end=None, results=schema.dashboard()):
 
     return results
 
+
 def get_average_days(start=None, end=None, results=schema.dashboard()):
     total_days = schema.total_days()
     appeal_status = models.Appeal.objects.values(
@@ -136,6 +138,7 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
                 results[level][rac]['days'] = int(mean(total_days[level][rac]['days']))
 
     return results
+
 
 def get_overview(start=None, end=None, results=schema.dashboard()):
     receipts_dispositions = get_receipt_dispositions(start, end, results)
