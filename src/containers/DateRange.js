@@ -56,7 +56,7 @@ const AverageProcessingTimePortal = ({ data }) => (
 const OverturnRateByLevelPortal = ({ data }) => (
   ReactDOM.createPortal(
     <OverturnRateByLevel data={data} />,
-    document.getElementById('total-overturn-rate')
+    document.getElementById('decisiondismissal-record-and-total-overturn-rate')
   )
 );
 

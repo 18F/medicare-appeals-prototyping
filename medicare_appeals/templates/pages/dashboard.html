@@ -13,20 +13,20 @@
     {% include "components/dashboard-tabs.html" %}
     {% include "components/date-range.html" %}
     <div class="ds-l-row ds-u-padding-y--1">
-      {% include "components/graph-card-half.html" with card_title="New receipts by HHS Level" card_description="The new receipts of appeals over the timespan" %}
-      {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" card_description="The dispositions of appeals over the timespan" %}
+      {% include "components/graph-card-half.html" with card_title="New Receipts by HHS Level" card_description="New appeals received during a specified timespan" %}
+      {% include "components/graph-card-half.html" with card_title="Dispositions by HHS Level" card_description="Appeals closed or removed from the appeals process during a specified timespan" %}
     </div>
     <div class="ds-l-row ds-u-padding-y--1">
-      {% include "components/graph-card-half.html" with card_title="Work in progress by HHS Level" card_description="The appeals currently being worked over the timespan" %}
+      {% include "components/graph-card-half.html" with card_title="Work in Progress by HHS Level" card_description="Appeals that were open at a specified point in time" %}
     </div>
     <div class="ds-l-row ds-u-padding-y--1">
-      {% include "components/graph-card-full.html" with card_title="Net receipts by level" card_description="The net appeals receipts minus dispositions over the timespan" %}
+      {% include "components/graph-card-full.html" with card_title="Net Receipts by level" card_description="New Receipts less dispositions during a specified timespan" %}
     </div>
     <div class="ds-l-row ds-u-padding-y--1">
-      {% include "components/graph-card-full.html" with card_title="Average processing time" card_description="The average number of days to close an appeal over the timespan" %}
+      {% include "components/graph-card-full.html" with card_title="Average Processing Time" card_description="The average number of days from appeal receipt to appeal disposition during a specified timespan" %}
     </div>
     <div class="ds-l-row ds-u-padding-y--1">
-      {% include "components/graph-card-full.html" with card_title="Total overturn rate" card_description="The average overturn rate of appeals favorable to the appellant over a timespan" %}
+      {% include "components/graph-card-full.html" with card_title="Decision/Dismissal Record and Total Overturn Rate" card_description="Record of favorable, partially favorable, and unfavorable decisions, dismissals, and their relation to total decisions and dismissals during a specified timespan. Overturn Rate (without dismissals) is represented by favorable and partially favorable decisions/all favorable, partially favorable, and unfavorable decisions during a specified timespan. Overturn Rate (with dismissals) is represented by favorable and partially favorable decisions/all favorable, partially favorable, and unfavorable decisions and dismissals during a specified timespan." %}
     </div>
   </div>
 </div>
