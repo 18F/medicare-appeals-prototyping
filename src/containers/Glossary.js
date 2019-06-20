@@ -68,7 +68,9 @@ const Glossary = () => {
                   <h3 className="ds-text">
                     Appeal
                   </h3>
-                  <div>An appeal is a action to dispute a claim</div>
+                  <div>
+                    The process used when a party to dispute a determination on claims.
+                  </div>
                 </div>
               </Card>
               <Card
@@ -94,9 +96,43 @@ const Glossary = () => {
               >
                 <div className="ds-u-margin-right--2">
                   <h3 className="ds-text">
+                    Attorney Adjudicator
+                  </h3>
+                  <div>
+                    A licensed attorney employed by HHS with knowledge of Medicare laws
+                  </div>
+                </div>
+              </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
                     Claim
                   </h3>
-                  <div>An Medicare claims which has been denied and is now being appealed</div>
+                  <div>
+                    An Medicare claims which has been denied and is now being appealed
+                  </div>
+                </div>
+              </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
+                    Disposition or Determination
+                  </h3>
+                  <div>
+                    A decision made on payment and/or liability of a claim/s in an appeal
+                  </div>
                 </div>
               </Card>
               <Card
@@ -113,6 +149,38 @@ const Glossary = () => {
                   <div>
                     A series of interconnected appeals that represent the entire lifecycle of an
                     appellant's claims.
+                  </div>
+                </div>
+              </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
+                    Provider
+                  </h3>
+                  <div>
+                    An entity that is approved to provide medical services to Medicare beneficiaries.
+                  </div>
+                </div>
+              </Card>
+              <Card
+                backgroundColor="white"
+                padding={16}
+                margin={16}
+                elevation={0}
+                display="flex"
+              >
+                <div className="ds-u-margin-right--2">
+                  <h3 className="ds-text">
+                    Receipt
+                  </h3>
+                  <div>
+                    An appeal that has been filed and received by one of the levels
                   </div>
                 </div>
               </Card>

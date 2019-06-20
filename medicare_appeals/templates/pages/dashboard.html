@@ -8,7 +8,7 @@
 {% block content %}
 <div class="ds-l-row ds-l-container ds-u-padding--0 ds-u-margin--0">
   {% include "components/navbar.html" %}
-  <div class="ds-l-md-col--10 ds-l-lg-col--10 ds-u-padding-bottom--3">
+  <div id="overview-content" class="ds-l-md-col--10 ds-l-lg-col--10 ds-u-padding-bottom--3">
     {% include "components/alert.html" %}
     {% include "components/dashboard-tabs.html" %}
     {% include "components/date-range.html" %}
@@ -38,6 +38,11 @@
     {% endautoescape %}
     window.addEventListener('load', function() {
       Build.dashboard.default.dashboard(data)
+      var button = document.getElementById('print-button');
+      button.disabled = false;
+      button.addEventListener('click', function() {
+        window.print();
+      })
     });
   </script>
 
