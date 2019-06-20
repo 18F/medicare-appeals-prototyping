@@ -5,6 +5,16 @@ import { formatLabel } from '../utils/formatting';
 
 const DataColumns = ({ data, groupBy, label, }) => {
   const dataColumns = data.map((record, idx) => {
+    const recordData = () => {
+      const value = record[label].toLocaleString();
+
+      if (value === 'NaN') {
+        return 'N/A';
+      }
+
+      return value;
+    }
+
     return (
       <div
         className={`
@@ -49,7 +59,7 @@ const DataColumns = ({ data, groupBy, label, }) => {
             }}
             className="ds-display ds-u-text-align--center"
           >
-            {`${record[label].toLocaleString()}`}
+            {`${recordData()}`}
           </h1>
         </div>
         <div

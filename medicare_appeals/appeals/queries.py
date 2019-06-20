@@ -93,6 +93,7 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
     appeal_status = models.Appeal.objects.values(
         'id', 'level__level_name', 'rac').order_by(
             'id').annotate(
+                closed_date=Max('status__created_at'),
                 days=(Max('status__created_at') - Min('status__created_at')),
                 status_count=Count('status__created_at')
             ).filter(status_count=2)
@@ -105,10 +106,11 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
             end_date = datetime.datetime(int(e_year), int(e_month), int(e_day), tzinfo=pytz.UTC)
 
             appeal_status = appeal_status.filter(
-                status__created_at__range=(
+                closed_date__range=(
                     start_date,
                     end_date
                 ))
+
         except Exception as e:
             print(f'{e}')
             pass
@@ -129,14 +131,38 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
             if len(total_days[level][rac]['days']) == 0:
                 results[level][rac]['days'] = int(0)
             else:
-                results[level][rac]['days'] = int(mean(total_days[level][rac]['days']))
+                extract_zeroes = list(filter(lambda a: a != 0, total_days[level][rac]['days']))
+                results[level][rac]['days'] = int(mean(extract_zeroes))
 
     return results
 
+
+def get_overturn_rates(start=None, end=None, results=schema.dashboard()):
+    s_year, s_month, s_day = start.split('-')
+    e_year, e_month, e_day = end.split('-')
+    start_date = datetime.datetime(int(s_year), int(s_month), int(s_day), tzinfo=pytz.UTC)
+    end_date = datetime.datetime(int(e_year), int(e_month), int(e_day), tzinfo=pytz.UTC)
+
+    total_appeals = models.Appeal.objects.values('level__level_name','rac').filter(
+            status__category='Closed',
+            status__created_at__range=(start_date, end_date)).annotate(count=Count('id'))
+
+    appeal_closed_actions = models.Appeal.objects.values(
+        'level__level_name','rac', 'status__action').filter(
+            status__category='Closed',
+            status__action='Unfavorable',
+            status__created_at__range=(start_date, end_date)).annotate(count=Count('id'))
+
+    # for t in total_appeals:
+    #     print(t)
+
+    # for a in appeal_closed_actions:
+    #     print(a)
 
 def get_overview(start=None, end=None, results=schema.dashboard()):
     receipts_dispositions = get_receipt_dispositions(start, end, results)
     work_in_progress = get_work_in_progress(end, results)
     average_days = get_average_days(start, end, results)
+    overturn = get_overturn_rates(start, end, results)
     output = format_overview_response(average_days)
     return output

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import columnContainer from '../components/ColumnContainer';
 import DataColumns from '../components/DataColumns';
-import averageAmount from '../selectors/averageAmount';
+import averageAmountIgnoreZeroes from '../selectors/averageAmountIgnoreZeroes';
 
 const filter = {
   options: ['all', 'non-rac', 'rac'],
@@ -10,7 +10,7 @@ const filter = {
   title: 'Filters'
 }
 
-const WrappedColumns = columnContainer(DataColumns, averageAmount);
+const WrappedColumns = columnContainer(DataColumns, averageAmountIgnoreZeroes);
 
 const AverageProcessingTime = ({ data }) => {
   return (

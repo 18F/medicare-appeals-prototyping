@@ -39,6 +39,24 @@ export const getFieldAverage = (data, options, filter) => {
   })
 }
 
+export const getFieldAverageIgnoreZeroes = (data, options, filter) => {
+  const { groupBy, field, category, label } = options;
+  const filtered = dataFilter(data, category, filter)
+
+  const grouped = _.groupBy(filtered, record => {
+    return record[groupBy]
+  });
+
+  return _.map(grouped, group => {
+    const zeroesIgnored = _.filter(group, item => item[field] !== 0);
+
+    return {
+      [groupBy]: group[0][groupBy],
+      [label]: _.meanBy(zeroesIgnored, item => item[field])
+    }
+  })
+}
+
 export const getFieldsDifference = (data, options, filter) => {
   const { groupBy, minuend, subtrahend, category, difference } = options;
   const filtered = dataFilter(data, category, filter)
