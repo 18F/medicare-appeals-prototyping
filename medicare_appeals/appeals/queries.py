@@ -59,24 +59,18 @@ def get_receipt_dispositions(start=None, end=None, results=schema.dashboard()):
     return results
 
 
-def get_work_in_progress(start=None, end=None, results=schema.dashboard()):
+def get_work_in_progress(end=None, results=schema.dashboard()):
     appeal_status = models.Appeal.objects.values(
         'id', 'level__level_name','status__category', 'rac').order_by(
             'id','-status__created_at'
                 ).distinct('id')
-
-    if start and end:
+    if end:
         try:
-            s_year, s_month, s_day = start.split('-')
             e_year, e_month, e_day = end.split('-')
-            start_date = datetime.datetime(int(s_year), int(s_month), int(s_day), tzinfo=pytz.UTC)
             end_date = datetime.datetime(int(e_year), int(e_month), int(e_day), tzinfo=pytz.UTC)
 
-            appeal_status = appeal_status.filter(
-                status__created_at__range=(
-                    start_date,
-                    end_date
-                ))
+            appeal_status = appeal_status.filter(status__created_at__lte=end_date)
+
         except Exception as e:
             print(f'{e}')
             pass
@@ -142,7 +136,7 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
 
 def get_overview(start=None, end=None, results=schema.dashboard()):
     receipts_dispositions = get_receipt_dispositions(start, end, results)
-    work_in_progress = get_work_in_progress(start, end, results)
+    work_in_progress = get_work_in_progress(end, results)
     average_days = get_average_days(start, end, results)
     output = format_overview_response(average_days)
     return output

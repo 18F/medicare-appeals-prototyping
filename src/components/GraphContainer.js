@@ -19,6 +19,7 @@ const graphContainer = (GraphComponent, TableComponent, selector) => {
 
       this.updateSelect = this.updateSelect.bind(this);
       this.showSelectedComponent = this.showSelectedComponent.bind(this);
+      this.showSubHeader = this.showSubHeader.bind(this);
     }
 
     updateSelect(selected, name) {
@@ -60,12 +61,30 @@ const graphContainer = (GraphComponent, TableComponent, selector) => {
       }
     }
 
+    showSubHeader() {
+      const { subHeader } = this.props;
+
+      if (subHeader) {
+        return (
+          <div className={`
+              ds-l-row ds-u-justify-content--end
+              ds-u-padding-bottom--2
+            `}
+          >
+            {subHeader()}
+          </div>
+        );
+      }
+    }
+
     render() {
 
       const showSelectedComponent = this.showSelectedComponent;
+      const showSubHeader = this.showSubHeader;
 
       return (
         <div className="ds-l-col--12">
+          {showSubHeader()}
           <div className="ds-l-row ds-u-justify-content--end">
             <SelectView
               {...this.state.view}
@@ -92,7 +111,11 @@ const graphContainer = (GraphComponent, TableComponent, selector) => {
     groupBy: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     field: PropTypes.string.isRequired,
-    view: PropTypes.object.isRequired
+    view: PropTypes.object.isRequired,
+    subHeader: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
+    ])
   }
 
   return WrapperComponent

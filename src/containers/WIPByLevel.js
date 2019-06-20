@@ -4,6 +4,7 @@ import graphContainer from '../components/GraphContainer';
 import BarChart from '../components/BarChart';
 import TableView from '../components/TableView';
 import sumAmount from '../selectors/sumAmount';
+import { readDate } from '../utils/formatting';
 
 const filter = {
   options: ['all', 'non-rac', 'rac'],
@@ -19,7 +20,13 @@ const view = {
 
 const WrappedGraph = graphContainer(BarChart, TableView, sumAmount)
 
-const WIPByLevel = ({ data }) => {
+const WIPByLevel = ({ data, end }) => {
+  const subHeader = () => (
+    <p className="ds-h6 ds-u-border-bottom--1">
+      Results for <strong className="ds-u-font-weight--bold">{readDate(end)}</strong>
+    </p>
+  );
+
   return (
     <WrappedGraph
       data={data}
@@ -27,6 +34,7 @@ const WIPByLevel = ({ data }) => {
       category='denial_category'
       field='work_in_progress'
       filter={filter}
+      subHeader={subHeader}
       view={view}
     />
   );

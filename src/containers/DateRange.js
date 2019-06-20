@@ -32,9 +32,9 @@ const DispositionsByLevelPortal = ({ data }) => (
   )
 );
 
-const WIPByLevelPortal = ({ data }) => (
+const WIPByLevelPortal = ({ data, end }) => (
   ReactDOM.createPortal(
-    <WIPByLevel data={data} />,
+    <WIPByLevel data={data} end={end} />,
     document.getElementById('work-in-progress-by-hhs-level')
   )
 );
@@ -178,6 +178,7 @@ class DateRangePicker extends React.Component {
                 className={'PreviewArea'}
                 shownDate={new Date(range.endDate)}
                 maxDate={this.props.maxDate}
+                minDate={this.props.minDate}
               />
             </Pane>
           </Dialog>
@@ -197,7 +198,7 @@ class DateRangePicker extends React.Component {
         </Pane>
         <NewReceiptsByLevelPortal data={data} />
         <DispositionsByLevelPortal data={data} />
-        <WIPByLevelPortal data={data} />
+        <WIPByLevelPortal data={data} end={end} />
         <NetReceiptsByLevelPortal data={data} />
         <AverageProcessingTimePortal data={data} />
         <OverturnRateByLevelPortal data={data} />
@@ -209,15 +210,17 @@ class DateRangePicker extends React.Component {
 DateRangePicker.defaultProps = {
   date: [],
   end: new Date(Date.now()),
-  start: new Date('2010-01-01'),
-  maxDate: new Date(Date.now())
+  start: new Date('2012-04-01'),
+  maxDate: new Date(Date.now()),
+  minDate: new Date('2012-04-01')
 }
 
 DateRangePicker.propTypes = {
   data: PropTypes.array,
   end: PropTypes.instanceOf(Date),
   start: PropTypes.instanceOf(Date),
-  maxDate: PropTypes.instanceOf(Date)
+  maxDate: PropTypes.instanceOf(Date),
+  minDate: PropTypes.instanceOf(Date)
 }
 
 export default DateRangePicker;

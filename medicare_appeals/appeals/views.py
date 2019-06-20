@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import viewsets
@@ -100,8 +101,9 @@ class OverviewView(viewsets.ViewSet):
         """
         Return a list of overview values.
         """
+        today = datetime.date.today().strftime('%Y-%m-%d')
         results = schema.dashboard()
-        start = request.query_params.get('start', None)
-        end = request.query_params.get('end', None)
+        start = request.query_params.get('start', '2012-04-01')
+        end = request.query_params.get('end', today)
         query_results = queries.get_overview(start, end, results=results)
         return Response(query_results)
