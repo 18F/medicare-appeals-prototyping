@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { colorByLevel } from '../utils/colors';
 import { formatLabel } from '../utils/formatting';
 
-const TableRow = ({ record, groupBy, field }) => {
+const TableRow = ({ record, groupBy, field, fieldLabel }) => {
   return (
     <div
       className={`
@@ -54,7 +54,7 @@ const TableRow = ({ record, groupBy, field }) => {
           {`${record[field].toLocaleString()}`}
           </p>
           <p className="ds-u-margin-x--1 ds-u-color--muted ds-u-font-size--tiny ds-u-margin--0">
-          {`${formatLabel(field)}`}
+          {`${formatLabel(fieldLabel || field)}`}
           </p>
         </div>
       </div>
@@ -62,13 +62,14 @@ const TableRow = ({ record, groupBy, field }) => {
   )
 }
 
-const TableView = ({ data, groupBy, field, category }) => {
+const TableView = ({ data, groupBy, field, fieldLabel, category }) => {
   const tableRows = data.map((record, idx) => {
     return (
       <TableRow
         record={record}
         groupBy={groupBy}
         field={field}
+        fieldLabel={fieldLabel}
         key={`table-row-${groupBy}-${field}-${idx}`}
       />
     );
@@ -95,6 +96,7 @@ TableView.propTypes = {
   data: PropTypes.array,
   groupBy: PropTypes.string,
   field: PropTypes.string,
+  fieldLabel: PropTypes.string,
   category: PropTypes.string
 }
 

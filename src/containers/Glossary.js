@@ -180,7 +180,7 @@ const Glossary = () => {
                     Receipt
                   </h3>
                   <div>
-                    An appeal that has been filed and received by one of the levels
+                    An appeal that has been received by one of the levels
                   </div>
                 </div>
               </Card>

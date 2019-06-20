@@ -33,6 +33,7 @@ const WIPByLevel = ({ data, end }) => {
       groupBy='level'
       category='denial_category'
       field='work_in_progress'
+      fieldLabel='open appeals'
       filter={filter}
       subHeader={subHeader}
       view={view}
