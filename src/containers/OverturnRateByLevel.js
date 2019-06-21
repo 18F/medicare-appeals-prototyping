@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import columnContainer from '../components/ColumnContainer';
-import DataColumns from '../components/DataColumns';
-import averageAmount from '../selectors/averageAmount';
+import stackedColumnContainer from '../components/StackedColumnContainer';
+import StackedDataColumns from '../components/StackedDataColumns';
+import fieldFilter from '../selectors/fieldFilter';
 
 const filter = {
   options: ['all', 'non-rac', 'rac'],
@@ -10,7 +10,7 @@ const filter = {
   title: 'Filters'
 }
 
-const WrappedColumns = columnContainer(DataColumns, averageAmount);
+const WrappedColumns = stackedColumnContainer(StackedDataColumns, fieldFilter);
 
 const OverturnRateByLevel = ({ data }) => {
   return (

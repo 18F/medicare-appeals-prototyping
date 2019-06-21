@@ -79,6 +79,29 @@ export const getFieldsDifference = (data, options, filter) => {
   });
 }
 
+export const getFieldFilter = (data, options, filter) => {
+  const { category, groupBy, field } = options;
+  const filtered = dataFilter(data, category, filter)
+
+  const grouped = _.groupBy(filtered, record => {
+    return record[groupBy]
+  });
+
+  return _.map(grouped, group => {
+    const output = {};
+
+    _.map(group, item => {
+      output[groupBy] = item[groupBy]
+      output[field] = _.mergeWith(output[field], item[field], (a, s) => {
+        if (!a) return s;
+        return a + s;
+      });
+    });
+
+    return output;
+  });
+}
+
 export const getMaxField = (data, groupBy, field, category) => {
   const grouped = getFieldCount(data, groupBy, field, category, {selected: 'all'});
 

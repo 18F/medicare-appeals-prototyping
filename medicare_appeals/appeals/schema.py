@@ -6,14 +6,24 @@ def dashboard():
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             },
             'non-rac': {
                 'dispositions': 0,
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             }
         },
         'level 2': {
@@ -22,14 +32,24 @@ def dashboard():
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             },
             'non-rac': {
                 'dispositions': 0,
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             }
         },
         'level 3': {
@@ -38,14 +58,24 @@ def dashboard():
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             },
             'non-rac': {
                 'dispositions': 0,
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             }
         },
         'level 4': {
@@ -54,14 +84,24 @@ def dashboard():
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             },
             'non-rac': {
                 'dispositions': 0,
                 'receipts': 0,
                 'work_in_progress': 0,
                 'days': 0,
-                'overturn_rate': 0
+                'overturn_rate': {
+                    'unfavorable': 0,
+                    'favorable': 0,
+                    'partially_favorable': 0,
+                    'dismissed': 0
+                }
             }
         }
     }

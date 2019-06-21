@@ -136,33 +136,49 @@ def get_average_days(start=None, end=None, results=schema.dashboard()):
 
     return results
 
+def format_value_to_key(value):
+    return value.lower().replace(' ', '_')
 
 def get_overturn_rates(start=None, end=None, results=schema.dashboard()):
+    actions = list(['Unfavorable', 'Favorable', 'Partially Favorable', 'Dismissed'])
     s_year, s_month, s_day = start.split('-')
     e_year, e_month, e_day = end.split('-')
     start_date = datetime.datetime(int(s_year), int(s_month), int(s_day), tzinfo=pytz.UTC)
     end_date = datetime.datetime(int(e_year), int(e_month), int(e_day), tzinfo=pytz.UTC)
 
-    total_appeals = models.Appeal.objects.values('level__level_name','rac').filter(
+    total_appeals = models.Appeal.objects.values('level__level_name').filter(
             status__category='Closed',
             status__created_at__range=(start_date, end_date)).annotate(count=Count('id'))
 
     appeal_closed_actions = models.Appeal.objects.values(
         'level__level_name','rac', 'status__action').filter(
             status__category='Closed',
-            status__action='Unfavorable',
-            status__created_at__range=(start_date, end_date)).annotate(count=Count('id'))
+            status__created_at__range=(start_date, end_date)
+            ).annotate(count=Count('id')).filter(
+                Q(status__action='Unfavorable') |
+                Q(status__action='Favorable') |
+                Q(status__action='Partially Favorable') |
+                Q(status__action='Dismissed'))
 
-    # for t in total_appeals:
-    #     print(t)
+    for item in appeal_closed_actions:
+        rac = 'rac'
 
-    # for a in appeal_closed_actions:
-    #     print(a)
+        if item['rac'] == False:
+            rac = 'non-rac'
+
+        if item['status__action'] in actions:
+            for total in total_appeals:
+                if total.get('level__level_name', None) == item['level__level_name']:
+                    rate = int((item['count'] / total['count']) * 100)
+                    results[item['level__level_name']][rac]['overturn_rate'][format_value_to_key(item['status__action'])] = rate
+                    break
+
+    return results
 
 def get_overview(start=None, end=None, results=schema.dashboard()):
     receipts_dispositions = get_receipt_dispositions(start, end, results)
     work_in_progress = get_work_in_progress(end, results)
     average_days = get_average_days(start, end, results)
     overturn = get_overturn_rates(start, end, results)
-    output = format_overview_response(average_days)
+    output = format_overview_response(overturn)
     return output
